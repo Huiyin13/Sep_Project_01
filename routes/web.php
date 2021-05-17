@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/infoForm', function () {
+    return view('informationForm');
+});
+
+//route to managerepairrequest controller
+Route::post('submit','App\Http\Controllers\manageRepairRequestController@requestdetail');
