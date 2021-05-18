@@ -60,6 +60,8 @@ class manageRepairStatusController extends Controller
     public function edit($id)
     {
         //
+        $data = manageRepairStatusModel::findOrFail($id);
+        return view('manageRepairStatus.staffUpdateRepairStatus', compact("data"));
     }
 
     /**
