@@ -48,7 +48,8 @@ class manageRepairStatusController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
+        return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 
     /**
@@ -63,7 +64,6 @@ class manageRepairStatusController extends Controller
         $data = manageRepairStatusModel::findOrFail($id);
         return view('manageRepairStatus.staffUpdateRepairStatus', compact("data"));
     }
-
     /**
      * Update the specified resource in storage.
      *

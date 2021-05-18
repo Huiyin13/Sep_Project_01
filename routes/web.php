@@ -28,5 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('testingindex', function () {
     return view('manageRepairStatus.testindex');
 });
+
 Route::resource('manageRepairStatus', 'manageRepairStatusController');
 
