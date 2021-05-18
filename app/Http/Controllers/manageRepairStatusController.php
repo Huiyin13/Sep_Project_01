@@ -15,8 +15,8 @@ class manageRepairStatusController extends Controller
     public function index()
     {
         //
-        $data = manageRepairStatusModel::latest()->paginate(3);
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))->with('i', (request()->input('page', 1) - 1) * 3);
+        $data = manageRepairStatusModel::all();
+        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
     }
 
     /**
