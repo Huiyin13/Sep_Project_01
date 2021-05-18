@@ -36,7 +36,7 @@ table, th, td {
         <td>{{ $row->Order_Status }}</td>
         
         <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
-        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.edit', $row->OrderID) }}'">View or Update</button>
+        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.custEdit', $row->OrderID) }}'">View or Update</button>
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button></td>

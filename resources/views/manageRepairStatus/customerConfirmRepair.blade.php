@@ -16,7 +16,7 @@
 <div class="center">
 <form method="post" action="{{ route('manageRepairStatus.update', $data->OrderID) }}">
 @csrf
-@method('PATCH')
+@method('PUT')
   <table>
     <tr>
         <td>Customer Name</td>
@@ -57,8 +57,12 @@
     </tr>
     </table>
     
+    
     </form>
-    <button onclick="location.href='{{ route('manageRepairStatus.index') }}'">
+    
+    <button onclick="location.href='{{ route('manageRepairStatus.custConfirm', ['id'=>$data->OrderID,'idtwo'=>$data->Customer_ID])}}'">
+     CONFIRM</button>
+    <button onclick="location.href='{{ route('manageRepairStatus.custCancel', ['id'=>$data->OrderID,'idtwo'=>$data->Customer_ID])}}'">
      CANCEL</button>
 </div>
 
