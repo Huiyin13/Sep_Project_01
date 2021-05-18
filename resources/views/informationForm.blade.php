@@ -15,6 +15,7 @@
         @csrf 
         <table border = 0 align ="center">
             <tr>
+            <input type="hidden" name="custID" value="10001">
                 <td>Computer Owner:</td>
                 <td><input type="text" name="compOwner" placeholder="Name"></td>
             </tr>
