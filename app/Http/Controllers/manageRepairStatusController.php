@@ -74,6 +74,13 @@ class manageRepairStatusController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'Order_Status' => 'required|max:255',
+            'Estimated_Cost' => 'required',
+            'Reason' => 'required',
+        ]);
+        manageRepairStatusModel::where('OrderID', $id)->update($validatedData);
+        return redirect('/manageRepairStatus')->with('success', 'Repair Status is successfully updated');
     }
 
     /**
@@ -85,5 +92,9 @@ class manageRepairStatusController extends Controller
     public function destroy($id)
     {
         //
+        $data = manageRepairStatusModel::findOrFail($id);
+        $data->delete();
+
+        return redirect('/manageRepairStatus')->with('success', 'Repair Record is Deleted');
     }
 }

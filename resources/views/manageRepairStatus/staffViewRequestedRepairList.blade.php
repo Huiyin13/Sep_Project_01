@@ -11,7 +11,10 @@ table, th, td {
 <body>
 
 <h2>Staff View Requested Repair List</h2>
-
+<p>@if(session()->get('success'))
+      {{ session()->get('success') }}  
+<br></p>
+@endif
 <table style="width:100%">
   <thead>
   <tr>
@@ -19,7 +22,8 @@ table, th, td {
     <th>Order ID</th> 
     <th>Customer Name</th>
     <th>Date</th>
-    <th>Status</th>
+    <th>Customer Confirmation Status</th>
+    <th>Repair Status</th>
     <th>Action</th>
   </tr>
   </thead>
@@ -30,22 +34,16 @@ table, th, td {
         <td>{{ $row->OrderID }}</td>
         <td>{{ $row->Customer_ID }}</td>
         <td>{{ $row->created_at }}</td>
+        <td>{{ $row->Confirmation_Status }}</td>
         <td>{{ $row->Order_Status }}</td>
-        @if ($row->Order_Status == 'COMPLETED')
-        <form action="{{ route('manageRepairStatus.show', $row->OrderID)}}" method="post">
-        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.show', $row->OrderID) }}'">View</button>
+        
+        <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
+        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.edit', $row->OrderID) }}'">View or Update</button>
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button></td>
         </form>
-        @else
-        <form action="{{ route('manageRepairStatus.show', $row->OrderID)}}" method="post">
-        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.edit', $row->OrderID) }}'">Update</button>
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button></td>
-        </form>
-        @endif
+
       </tr>
       @endforeach
     </tbody>
