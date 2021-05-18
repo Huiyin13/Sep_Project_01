@@ -14,7 +14,7 @@ class CreateRequestdetailsTable extends Migration
     public function up()
     {
         Schema::create('requestdetails', function (Blueprint $table) {
-            $table->id('OrderID');
+            $table->id('OrderID')->startingValue(10000);
             $table->string('Customer_ID');
             $table->string('Order_Status');
             $table->string('Comp_Owner');
