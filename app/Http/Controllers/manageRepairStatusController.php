@@ -15,8 +15,8 @@ class manageRepairStatusController extends Controller
     public function index()
     {
         //
-        $data = manageRepairStatusModel::latest()->paginate(3);
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))->with('i', (request()->input('page', 1) - 1) * 3);
+        $data = manageRepairStatusModel::all();
+        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
     }
 
     /**
@@ -48,7 +48,8 @@ class manageRepairStatusController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
+        return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 
     /**
@@ -60,8 +61,9 @@ class manageRepairStatusController extends Controller
     public function edit($id)
     {
         //
+        $data = manageRepairStatusModel::findOrFail($id);
+        return view('manageRepairStatus.staffUpdateRepairStatus', compact("data"));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -72,6 +74,13 @@ class manageRepairStatusController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'Order_Status' => 'required|max:255',
+            'Estimated_Cost' => 'required',
+            'Reason' => 'required',
+        ]);
+        manageRepairStatusModel::where('OrderID', $id)->update($validatedData);
+        return redirect('/manageRepairStatus')->with('success', 'Repair Status is successfully updated');
     }
 
     /**
@@ -83,5 +92,9 @@ class manageRepairStatusController extends Controller
     public function destroy($id)
     {
         //
+        $data = manageRepairStatusModel::findOrFail($id);
+        $data->delete();
+
+        return redirect('/manageRepairStatus')->with('success', 'Repair Record is Deleted');
     }
 }

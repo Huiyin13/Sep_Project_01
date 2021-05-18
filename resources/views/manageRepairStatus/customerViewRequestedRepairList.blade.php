@@ -6,11 +6,11 @@ table, th, td {
   border: 1px solid black;
 }
 </style>
-    <title>Staff View Requested Repair</title>
+    <title>Customer View Requested Repair</title>
 </head>
 <body>
 
-<h2>Staff View Requested Repair List</h2>
+<h2>Customer View Requested Repair List</h2>
 <p>@if(session()->get('success'))
       {{ session()->get('success') }}  
 <br></p>
@@ -20,7 +20,6 @@ table, th, td {
   <tr>
   
     <th>Order ID</th> 
-    <th>Customer Name</th>
     <th>Date</th>
     <th>Customer Confirmation Status</th>
     <th>Repair Status</th>
@@ -32,7 +31,6 @@ table, th, td {
       <tr>
         
         <td>{{ $row->OrderID }}</td>
-        <td>{{ $row->Customer_ID }}</td>
         <td>{{ $row->created_at }}</td>
         <td>{{ $row->Confirmation_Status }}</td>
         <td>{{ $row->Order_Status }}</td>

@@ -23,5 +23,11 @@ Route::get('/infoForm', function () {
 Route::post('submit','manageRepairRequestController@requestdetail');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('testingindex', function () {
+    return view('manageRepairStatus.testindex');
+});
+
 Route::resource('manageRepairStatus', 'manageRepairStatusController');
 
