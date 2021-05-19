@@ -59,11 +59,20 @@
     
     
     </form>
-    
+    @if ($data->Confirmation_Status == 'PENDING')
     <button onclick="location.href='{{ route('manageRepairStatus.custConfirm', ['id'=>$data->OrderID,'idtwo'=>$data->Customer_ID])}}'">
      CONFIRM</button>
     <button onclick="location.href='{{ route('manageRepairStatus.custCancel', ['id'=>$data->OrderID,'idtwo'=>$data->Customer_ID])}}'">
      CANCEL</button>
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     Back</button>
+     @elseif ($data->Confirmation_Status == 'CONFIRMED')
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     Back</button>
+     @else
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     Back</button>
+     @endif
 </div>
 
 </body>
