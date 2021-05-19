@@ -40,11 +40,16 @@
         @if ($data->Order_Status == 'PENDING')
             <option value="{{ $data->Order_Status}}">{{ $data->Order_Status}}</option>
             <option value="IN PROGRESS">IN PROGRESS</option>
-        @else if ($data->Order_Status == 'IN PROGRESS')
+            <option value="COMPLETED">COMPLETED</option>
+        @elseif ($data->Order_Status == 'IN PROGRESS')
         <option value="{{ $data->Order_Status}}">{{ $data->Order_Status}}</option>
             <option value="PENDING">PENDING</option>
-        @endif
             <option value="COMPLETED">COMPLETED</option>
+        @else
+        <option value="{{ $data->Order_Status}}">{{ $data->Order_Status}}</option>
+        <option value="PENDING">PENDING</option>
+        <option value="IN PROGRESS">IN PROGRESS</option>
+        @endif
             </select></td>
     </tr>
     <tr>
