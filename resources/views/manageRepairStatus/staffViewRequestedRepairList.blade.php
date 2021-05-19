@@ -15,6 +15,13 @@ table, th, td {
       {{ session()->get('success') }}  
 <br></p>
 @endif
+
+<form action="{{ route('manageRepairStatus.index') }}" method="GET" role="search">          
+  <input type="text" class="form-control mr-2" name="term" placeholder="Search Order ID" id="term">
+  <button class="btn btn-info" type="submit" title="Search projects">Search</button>
+  <a href="{{ route('manageRepairStatus.index') }}" class=" mt-1">
+  <button class="btn btn-danger" type="button" title="Refresh page">Refresh</button></a>
+</form>
 <table style="width:100%">
   <thead>
   <tr>

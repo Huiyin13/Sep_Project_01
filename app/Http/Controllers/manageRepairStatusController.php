@@ -12,11 +12,24 @@ class manageRepairStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = manageRepairStatusModel::all();
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
+        $data = manageRepairStatusModel::where([
+            ['OrderID', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('OrderID', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('OrderID', 'desc')
+            ->paginate(10);
+
+        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+        /*$data = manageRepairStatusModel::all();
+        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));*/
     }
 
     /**
