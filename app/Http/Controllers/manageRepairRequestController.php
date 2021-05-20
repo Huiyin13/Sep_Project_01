@@ -17,4 +17,10 @@ class manageRepairRequestController extends Controller
         $detail->Problems_Reported = $req->problemsReported;
         $detail->save();
     }
+
+    //VIEW
+    function list(Request $data){
+        $data = manageRepairRequestModel::all();
+        return view('request.custView',compact("data");
+    }
 }

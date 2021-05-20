@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/infoForm', function () {
-    return view('informationForm');
+    return view('request.informationForm');
 });
+Route::get('/view', function () {
+    return view('request.custView');
+});
+
 //route to managerepairrequest controller
 Route::post('submit','manageRepairRequestController@requestdetail');
 Auth::routes();
