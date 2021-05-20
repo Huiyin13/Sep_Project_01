@@ -22,6 +22,8 @@ Route::get('/infoForm', function () {
 Route::get('/view', function () {
     return view('request.custView');
 });
+Route::get('go','manageRepairRequestController@list');
+
 
 //route to managerepairrequest controller
 Route::post('submit','manageRepairRequestController@requestdetail');

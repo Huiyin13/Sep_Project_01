@@ -19,8 +19,8 @@ class manageRepairRequestController extends Controller
     }
 
     //VIEW
-    function list(Request $data){
+    function list(){
         $data = manageRepairRequestModel::all();
-        return view('request.custView',compact("data");
+        return view('request.custView',compact("data"));
     }
 }
