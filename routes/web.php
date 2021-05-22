@@ -36,8 +36,8 @@ Route::get('/manageRepairStatus/{id}/{idtwo}/custCancel', 'manageRepairStatusCon
 Route::resource('manageRepairStatus', 'manageRepairStatusController');
 
 // Route for Manage Registration
-Route::get('/ManageRegistration/CustRegistration', 'App\Http\Controllers\RegistrationController@showCustomerRegisterForm');
-Route::get('/ManageRegistration/RiderRegistration', 'App\Http\Controllers\RegistrationController@showRiderRegisterForm');
+Route::get('/ManageRegistration/CustRegistration', 'App\Http\Controllers\ManageRegistrationController@showCustomerRegisterForm');
+Route::get('/ManageRegistration/RiderRegistration', 'App\Http\Controllers\ManageRegistrationController@showRiderRegisterForm');
 
-Route::post('/register/customer', 'App\Http\Controllers\RegistrationController@custreg');
-Route::post('register/rider', 'App\Http\Controllers\RegistrationController@riderreg');
+Route::post('/register/customer', 'App\Http\Controllers\ManageRegistrationController@custreg');
+Route::post('register/rider', 'App\Http\Controllers\ManageRegistrationController@riderreg');
