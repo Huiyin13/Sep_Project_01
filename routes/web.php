@@ -13,24 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// manage login and registration
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//manage repair Request
 Route::get('/infoForm', function () {
-    return view('request.informationForm');
+    return view('manageRepairRequest.informationForm');
 });
+Route::post('submit','manageRepairRequestController@requestdetail');
+
 Route::get('/view', function () {
-    return view('request.custView');
+    return view('manageRepairRequest.custView');
 });
 Route::get('go','manageRepairRequestController@list');
 
 
-//route to managerepairrequest controller
-Route::post('submit','manageRepairRequestController@requestdetail');
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+//manage request Status
 Route::get('testingindex', function () {
     return view('manageRepairStatus.testindex');
 });
