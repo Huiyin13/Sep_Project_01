@@ -15,12 +15,13 @@ class manageRepairRequestController extends Controller
         $detail->Warranty_Date = $req->warrantyDate;
         $detail->Problems_Frequency = $req->problemsFrequency;
         $detail->Problems_Reported = $req->problemsReported;
+        $detail->Send_Status = $req->sendStatus;
         $detail->save();
     }
 
     //VIEW
     function list(){
         $data = manageRepairRequestModel::all();
-        return view('request.custView',compact("data"));
+        return view('manageRepairRequest.custView',compact("data"));
     }
 }
