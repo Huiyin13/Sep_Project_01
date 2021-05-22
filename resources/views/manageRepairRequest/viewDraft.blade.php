@@ -38,7 +38,7 @@
         <td>{{ $row->Warranty_Date }}</td>
         <td>{{ $row->Problems_Frequency }}</td>
         <td>{{ $row->Problems_Reported }}</td>
-
+        <td><button>Edit</button></td>
         <td><button>Delete</button></td>
       </tr>
       @endforeach
