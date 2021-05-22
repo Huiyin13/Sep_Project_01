@@ -16,6 +16,10 @@
         <table border = 0 align ="center">
             <tr>
             <input type="hidden" name="custID" value="10001">
+            <input type="hidden" name="reason" value="10002">
+            <input type="hidden" name="estimatedCost" value="10003">
+            <input type="hidden" name="confirmationStatus" value="10004">
+
                 <td>Computer Owner:</td>
                 <td><input type="text" name="compOwner" placeholder="Name" required></td>
             </tr>
