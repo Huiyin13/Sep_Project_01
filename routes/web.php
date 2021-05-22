@@ -30,9 +30,8 @@ Route::get('request', function () {//main page
     return view('manageRepairRequest.requestMain');
 });
 //Route::get('go','manageRepairRequestController@list');can be deleted
-Route::get('/manageRepairRequest/{id}/list', 'manageRepairRequestController@list')->name('manageRepairRequest.list');//viewdraft
-
-//Route::get('/manageRepairRequest/{id}/editData', 'manageRepairRequestController@editData')->name('manageRepairRequest.editData');
+Route::get('/manageRepairRequest/{id}/list', 'manageRepairRequestController@list')->name('manageRepairRequest.list');//viewDraft
+//Route::get('/manageRepairRequest/{id}/editData', 'manageRepairRequestController@editData')->name('manageRepairRequest.editData');//editDraft
 
 
 //manage request Status
