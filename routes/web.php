@@ -21,16 +21,18 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //manage repair Request
-Route::get('/infoForm', function () {
+Route::get('/infoForm', function () {//create request
     return view('manageRepairRequest.informationForm');
 });
-Route::post('submit','manageRepairRequestController@requestdetail');
+Route::post('submit','manageRepairRequestController@requestdetail');//create request
 
-Route::get('/view', function () {
-    return view('manageRepairRequest.custView');
+Route::get('request', function () {//main page
+    return view('manageRepairRequest.requestMain');
 });
-Route::get('go','manageRepairRequestController@list');
+//Route::get('go','manageRepairRequestController@list');can be deleted
+Route::get('/manageRepairRequest/{id}/list', 'manageRepairRequestController@list')->name('manageRepairRequest.list');//viewdraft
 
+//Route::get('/manageRepairRequest/{id}/editData', 'manageRepairRequestController@editData')->name('manageRepairRequest.editData');
 
 
 //manage request Status
