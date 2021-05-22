@@ -25,6 +25,7 @@ class CreateRequestdetailsTable extends Migration
             $table->string('Reason');
             $table->float('Estimated_Cost');
             $table->string('Confirmation_Status');
+            $table->string('Send_Status');
             $table->timestamps();
         });
     }
