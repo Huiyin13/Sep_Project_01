@@ -13,18 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// manage login and registration
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/infoForm', function () {
-    return view('informationForm');
-});
-//route to managerepairrequest controller
-Route::post('submit','manageRepairRequestController@requestdetail');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//manage repair Request
+Route::get('/infoForm', function () {//create request
+    return view('manageRepairRequest.informationForm');
+});
+Route::post('submit','manageRepairRequestController@requestdetail');//create request
 
+Route::get('request', function () {//main page
+    return view('manageRepairRequest.requestMain');
+});
+//Route::get('go','manageRepairRequestController@list');can be deleted
+Route::get('/manageRepairRequest/{id}/list', 'manageRepairRequestController@list')->name('manageRepairRequest.list');//viewDraft
+//Route::get('/manageRepairRequest/{id}/editData', 'manageRepairRequestController@editData')->name('manageRepairRequest.editData');//editDraft
+
+
+//manage request Status
 Route::get('testingindex', function () {
     return view('manageRepairStatus.testindex');
 });
