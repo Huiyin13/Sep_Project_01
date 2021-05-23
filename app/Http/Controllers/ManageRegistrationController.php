@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 // Newly added controller 
-use App\Http\Controllers;
+// use App\Http\Controllers;
 use App\Providers\RouteServiceProvider;
 use App\Models\customer;
 use App\Models\rider;
