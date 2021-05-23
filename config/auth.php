@@ -46,6 +46,19 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        // Added auth for customer and rider 
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+        'rider' => [
+            'driver' => 'session',
+            'provider' => 'riders',
+        ],
     ],
 
     /*
@@ -69,6 +82,15 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        // Added provider for customers and riders 
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\customer::class,
+        ],
+        'riders' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\rider::class, 
         ],
 
         // 'users' => [

@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Changed Laravel to DCRSMS --> 
+    <title>{{ config('app.name', 'DCRSMS') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,13 +19,44 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Added style --> 
+    <style>
+        button{
+			background-color: black; 
+			border: none; 
+			color: white; 
+			padding: 5px 10px;
+		}
+        /* register.blade.php */ 
+		table {
+			width: 100%;
+		}
+        /* CustRegistration.blade.php & RiderRegistration.blade.php */ 
+        table, td{
+			padding: 10px;
+		}
+        /* RiderRegistration.blade.php - CHOOSE FILE */
+		::-webkit-file-upload-button {
+  			background: black;
+  			color: white;
+  			border: none;
+  			padding: 5px 10px;
+            text-transform: uppercase;
+		}
+        .center {
+            margin: auto;
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container" style="background-color: orange">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <!-- Changed from Laravel to logo --> 
+                    <img src="images/Logo.png" alt="Dercs Logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -32,8 +64,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <!-- Changed mr to ml --> 
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Added center header --> 
+                        <center><p style="font-size:30px">REPAIR | SUPPLY | SERVICES</p></center>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -41,14 +75,16 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="nav-item mr-2">
+                                    <!-- Changed from link to button for Sign In --> 
+                                    <button type="submit"><a href="{{ route('login') }}" style="color: white; text-decoration: none;">{{ __('SIGN IN') }}</a></button>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <!-- Changed from link to button for Sign Up --> 
+                                    <button type="submit"><a href="{{ route('register') }}" style="color: white; text-decoration: none;">{{ __('SIGN UP') }}</a></button>
                                 </li>
                             @endif
                         @else
