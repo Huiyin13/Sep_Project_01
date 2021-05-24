@@ -17,7 +17,7 @@
 			<div class="col-sm-8 col-sm-offset-8">
 			@foreach($data as $row)
 				<h2><b>Your Profile</b></h2>
-				<form action="{{ route('ManageAccount.editProfile', $row->Customer_ID)}}" method="post">
+				<form action="{{ route('ManageAccount.editProfile', $row->Customer_ID)}}" method="get">
 				@csrf
 				<table>
 				
