@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 <!DOCTYPE html> 
 <html>
 <head>
@@ -17,60 +15,54 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-				<h2><b>Customer Registration</b></h2>
-				<form action='{{ url("register/$url") }}' method="post">
+			@foreach($data as $row)
+				<h2><b>Your Profile</b></h2>
+				<form action="{{ route('ManageAccount.editProfile', $row->Customer_ID)}}" method="post">
 				@csrf
 				<table>
+				
 					<!-- Customer Name --> 
 					<tr>
 						<td>Name (as per IC): </td>
-						<td><input type="text" name="Customer_Name" placeholder="Full Name as per IC" size="50" required></td>
+						<td>{{ $row->Customer_Name }}</td>
 					</tr>
 					<!-- Customer Identification Card number -->
 					<tr>
 						<td>Identification Card (IC) Number: </td>
-						<td><input type="text" name="Customer_IC" placeholder="e.g. 123456789012" maxlength="12" size="50" required></td>
+						<td>{{ $row->Customer_IC }}</td>
 					</tr>
 					<!-- Reminder for customer -->
 					<tr>
-						<td style="color:red;font-size: 10px">Please ensure that you enter the correct IC number. </td>
-						<td style="color:red;font-size: 10px">Once registered, you cannot edit your IC number. </td>
+						<td style="color:red;font-size: 10px">Contact us, if need to update your IC. </td>
+						
 					</tr>
 					<!-- Customer Email -->
 					<tr>
 						<td>Email: </td>
-						<td><input type="email" name="Customer_Email" placeholder="e.g. example@example.com" size="50" required></td>
+						<td>{{ $row->Customer_Email }}</td>
 					</tr>
 					<!-- Customer Address -->
 					<tr> 
 						<td>Address: </td>
-						<td><textarea name="Customer_Address" row="5" cols="52" placeholder="House Number, Building Name, Street Name, Postcode, Area, State" required></textarea></td>
+						<td>{{ $row->Customer_Address }}</td>
 					</tr>
 					<!-- Customer Phone number -->
 					<tr> 
 						<td>Phone Number: </td>
-						<td><input type="text" name="Customer_Phone" placeholder="e.g. 0123456789"  maxlength="12" size="50" required></td>
-					</tr>
-					<!-- Customer Password -->
-					<tr>
-						<td>Password: </td>
-						<td><input type="password" name="Customer_Password" placeholder="Minimum 8 characters" size="50" required></td>
-					</tr>
-					<!-- Customer Cofirm Password -->
-					<tr> 
-						<td>Confirm Password: </td>
-						<td><input type="password" name="Customer_Password_confirmation" placeholder="Please re-enter the password above correctly" size="50" required></td>
+						<td>{{ $row->Customer_Phone }}</td>
 					</tr>
 					<!-- Submit button -->
 					<tr>
 						<td></td>
-						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">REGISTER</button></td>
+						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> <button type="button" style="background-color: black; border: none; color: white; padding: 5px 10px">CHANGE PASSWORD</button></td>
+						<td></td>
 					</tr>
+					@endforeach
 				</table>
+				
                 </form>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
-@endsection
