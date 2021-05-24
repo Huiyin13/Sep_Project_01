@@ -44,7 +44,7 @@
                 <td>
                 <select name="sendStatus" value ="2" placeholder ="Status" required>
                         <option>SAVE AS DRAFT</option>
-                        <option>SUBMITTED</option> 
+                        <option>SUBMIT</option> 
                 </td>
             </tr>
             <tr>
