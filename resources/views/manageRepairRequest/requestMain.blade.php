@@ -9,7 +9,5 @@
 
 <button onclick="location.href='{{ route('manageRepairRequest.list',20001) }}'">
      View Request Draft</button>
-<button onclick="location.href='{{ route('manageRepairRequest.list',20001) }}'">
-     Edit Requested Draft</button>
 </body>
 </html>

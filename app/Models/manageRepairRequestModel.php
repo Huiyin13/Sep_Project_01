@@ -9,4 +9,5 @@ class manageRepairRequestModel extends Model
 {
     use HasFactory;
     public $table = "requestdetails";
+    protected $primaryKey = 'OrderID';
 }

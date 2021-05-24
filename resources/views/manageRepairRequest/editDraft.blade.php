@@ -21,49 +21,47 @@
 </style>
 
 <body>
-    @foreach($data as $row)
         <h1>Please fill in the table below:</h1>
         <br>
-        <form action ="submit" method="post">
+    <form method="post" action = "{{ route('manageRepairRequest.update', $data->OrderID) }}" >
         @csrf 
         <table border = 0 align ="center">
             <tr>
-            <input type="hidden" name="custID" value="10001">
-            <input type="hidden" name="reason" value="10002">
-            <input type="hidden" name="estimatedCost" value="10003">
-            <input type="hidden" name="confirmationStatus" value="10004">
-
+            <input type="hidden" name="custID" value="{{ $data->Customer_ID}}">
+            <input type="hidden" name="reason" value="{{ $data->Reason}}">
+            <input type="hidden" name="estimatedCost" value="{{ $data->Estimated_Cost}}">
+            <input type="hidden" name="confirmationStatus" value="Confirmation_Status">
                 <td>Computer Owner:</td>
-                <td><input type="text" name="compOwner" placeholder="Name" required></td>
+                <td><input type="text" name="compOwner" value="{{ $data->Comp_Owner}}" required></td>
             </tr>
             <tr>
                 <td>Computer Model:</td>
-                <td><input type="text" name="compModel" placeholder="Model's name" required></td>
+                <td><input type="text" name="compModel" value="{{ $data->Comp_Model}}" required></td>
             </tr>
             <tr>
                 <td>Date of Computer Warranty End:</td>
-                <td><input type="date" name="warrantyDate" required></td>
+                <td><input type="date" name="warrantyDate" value="{{ $data->Warranty_Date}}" required></td>
             </tr>
             <tr>
                 <td>Frequency of the problem happened:</td>
-                <td><input type="integer" name="problemsFrequency" placeholder="0-10" required></td>
+                <td><input type="integer" name="problemsFrequency" value="{{ $data->Problems_Frequency}}" required></td>
             </tr>
             <tr>
                 <td>Problem's detail:</td>
-                <td><input type="text" name="problemsReported" placeholder="Description" required></td>
+                <td><input type="text" name="problemsReported" value="{{ $data->Problems_Reported}}" required></td>
             </tr>
             <tr>
                 <td>Do you want to submit this form?</td>
                 <td>
-                <select name="sendStatus" value ="2" placeholder ="Status" required>
+                <select name="sendStatus" value ="2" value="{{ $data->Send_Status}}" required>
                         <option>SAVE AS DRAFT</option>
                         <option>SUBMITTED</option> 
                 </td>
             </tr>
             <tr>
-            <td><input type="submit"></td>
+                <td><input type="submit"></td>
             </tr>
         </table>
-s      @endforeach
+    </form>
 </body>
 

@@ -19,6 +19,12 @@
     opacity: 2;
   }
 </style>
+
+<p>@if(session()->get('success'))
+      {{ session()->get('success') }}  
+<br></p>
+@endif
+
 <table style="width:100%">
   <thead>
   <tr>
@@ -38,8 +44,8 @@
         <td>{{ $row->Warranty_Date }}</td>
         <td>{{ $row->Problems_Frequency }}</td>
         <td>{{ $row->Problems_Reported }}</td>
-        <td><button>Edit</button></td>
-        <td><button>Delete</button></td>
+        <td><button onclick="location.href='{{ route('manageRepairRequest.edit', $row->OrderID) }}'">Edit</button></td>
+        <td><button onclick="location.href='{{ route('manageRepairRequest.destroy', $row->OrderID) }}'">Delete</button></td>
       </tr>
       @endforeach
     </tbody>
