@@ -34,7 +34,11 @@ Route::get('/manageRepairRequest/{id}/list', 'manageRepairRequestController@list
 Route::get('/manageRepairRequest/{id}/edit', 'manageRepairRequestController@edit')->name('manageRepairRequest.edit');//editDraft
 Route::post('/manageRepairRequest/{id}/update', 'manageRepairRequestController@update')->name('manageRepairRequest.update');//updateDraft
 Route::get('/manageRepairRequest/{id}/destroy', 'manageRepairRequestController@destroy')->name('manageRepairRequest.destroy');//deleteDraft
-
+Route::get('/manageRepairRequest/{id}/sort', 'manageRepairRequestController@sort')->name('manageRepairRequest.sort');//sortDraft
+Route::get('/statuschart', 'manageRepairRequestController@index');//chart page
+Route::get('app2', function () {//echart page
+    return view('layouts.app2');
+});
 
 //manage request Status
 Route::get('testingindex', function () {

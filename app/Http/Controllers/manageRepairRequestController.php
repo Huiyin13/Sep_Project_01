@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\manageRepairRequestModel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class manageRepairRequestController extends Controller
 {
@@ -12,11 +14,23 @@ class manageRepairRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function index()
     {
         //
+        $data = DB::table('requestdetails')
+                ->select(
+                    DB::raw('Confirmation_Status as Confirmation_Status'),
+                    DB::raw('count(*) as number'))
+                    ->groupBy('Confirmation_Status')
+                    ->get();
+                    $array[] = ['Status','Number'];
+                    foreach($data as $key => $value){
+                        $array[++$key] = [$value->Confirmation_Status, $value->number];
+                    }
+                    return view('manageRepairrequest.statusPieChart')->with('Confirmation_Status', json_encode
+                    ($array));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -69,6 +83,13 @@ class manageRepairRequestController extends Controller
         return view('manageRepairRequest.viewDraft', compact("data"));
     }
 
+    public function sort($id)
+    {
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' ORDER BY Warranty_Date DESC");
+        return view('manageRepairRequest.sorted', compact("sorted"));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -93,7 +114,7 @@ class manageRepairRequestController extends Controller
     {
         //
         $data = manageRepairRequestModel::findOrFail($id);    
-        $data->Customer_ID= $req->custID;
+            $data->Customer_ID= $req->custID;
             $data->Order_Status= $req->compOwner;
             $data->Comp_Owner= $req->compOwner;
             $data->Comp_Model = $req->compModel;
@@ -121,4 +142,5 @@ class manageRepairRequestController extends Controller
         $data->delete();
         return redirect('request');
     }
+    
 }
