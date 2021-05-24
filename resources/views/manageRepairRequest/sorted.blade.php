@@ -39,8 +39,7 @@
   </tr>
   </thead>
   <tbody>
-        <button onclick="location.href='{{ route('manageRepairRequest.sort',20001) }}'">Sort</button>
-    @foreach($data as $row)
+    @foreach($sorted as $row)
       <tr>
         <td>{{ $row->Comp_Owner }}</td>
         <td>{{ $row->Comp_Model }}</td>
@@ -50,7 +49,6 @@
         <td><button onclick="location.href='{{ route('manageRepairRequest.edit', $row->OrderID) }}'">Edit</button></td>
         <td><button onclick="location.href='{{ route('manageRepairRequest.destroy', $row->OrderID) }}'">Delete</button></td>
       </tr>
-
 
       @endforeach
     </tbody>
