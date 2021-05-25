@@ -54,15 +54,32 @@ class ManageAccountController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validatedData = $request->validate([
-            'Customer_Name' => 'required|max:255',
-            'Customer_Phone' => 'required|max:255',
-            'Customer_Email' => 'required|max:255',
-            'Customer_Address' => 'required|max:255',
+        $data = customer::where('Customer_ID', $id)->get();
+        $validatedPass = $request->Customer_Password;
+        foreach($data as $data1){
+            $data2 = $data1->Customer_Password;
+        }
+        if ( $validatedPass == $data2) {
+            
+            $validatedData = $request->validate([
+                'Customer_Name' => 'required|max:255',
+                'Customer_Phone' => 'required|max:255',
+                'Customer_Email' => 'required|max:255',
+                'Customer_Address' => 'required|max:255',
 
-        ]);
-        customer::where('Customer_ID', $id)->update($validatedData);
-        return redirect('/test')->with('success', 'Profile is successfully updated');
-       
+            ]);
+            customer::where('Customer_ID', $id)->update($validatedData);
+            $message = "Profile is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.test');
+        } 
+        else {
+            $data = customer::where('Customer_ID', $id)->get();
+             $message = "Password INCORRECT please try again";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.CustomerUpdateInterface', compact("data"));
+        }
     }
+
+    
 }
