@@ -57,3 +57,12 @@ Route::get('/ManageRegistration/RiderRegistration', 'ManageRegistrationControlle
 
 Route::post('/register/customer', 'ManageRegistrationController@custreg');
 Route::post('/register/rider', 'ManageRegistrationController@riderreg');
+
+//Route For Manage Account
+Route::get('/ManageAccount/{id}/selectProfile', 'ManageAccountController@selectProfile')->name('ManageAccount.selectProfile');
+Route::get('/ManageAccount/{id}/editProfile', 'ManageAccountController@editProfile')->name('ManageAccount.editProfile');
+Route::post('/ManageAccount/{id}/update', 'ManageAccountController@update')->name('ManageAccount.update');
+Route::resource('ManageAccount', 'ManageAccountController');
+Route::get('test', function () {
+    return view('ManageAccount.test');
+});
