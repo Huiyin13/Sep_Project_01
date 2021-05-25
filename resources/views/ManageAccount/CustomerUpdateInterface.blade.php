@@ -55,14 +55,15 @@
 					</tr> 
 					<!-- Customer Password --> 
 					<tr>
-						<td>Password </td>
+						<td>Password: </td>
 						<td><input type="password" name="Customer_Password"  id="Customer_Password" required></td>
 					</tr>
 					<!-- Submit button -->
 					<tr>
 						<td></td>
-						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">UPDATE</button> <button type="button" style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.editProfile', $row->Customer_ID) }}'">View or Update</button></td>
+						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">UPDATE</button></td>
 						<td></td>
+						<td><button type="button" style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.selectProfile', $row->Customer_ID) }}'">Cancel</button></td>
 					</tr>
 					
 				</table>
