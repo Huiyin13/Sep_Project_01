@@ -63,7 +63,8 @@ Route::post('/register/rider', 'ManageRegistrationController@riderreg');
 Route::get('/ManageAccount/{id}/selectProfile', 'ManageAccountController@selectProfile')->name('ManageAccount.selectProfile');
 Route::get('/ManageAccount/{id}/editProfile', 'ManageAccountController@editProfile')->name('ManageAccount.editProfile');
 Route::post('/ManageAccount/{id}/update', 'ManageAccountController@update')->name('ManageAccount.update');
-Route::post('/ManageAccount/{id}/validatePassword', 'ManageAccountController@validatePassword')->name('ManageAccount.validatePassword');
+Route::get('/ManageAccount/{id}/changePassword', 'ManageAccountController@changePassword')->name('ManageAccount.changePassword');
+Route::get('/ManageAccount/{id}/updatePassword', 'ManageAccountController@updatePassword')->name('ManageAccount.updatePassword');
 Route::resource('ManageAccount', 'ManageAccountController');
 Route::get('test', function () {
     return view('ManageAccount.test');
