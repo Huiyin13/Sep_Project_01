@@ -40,7 +40,7 @@ class manageRepairRequestController extends Controller
     {
             $detail = new manageRepairRequestModel;
             $detail->Customer_ID= $req->custID;
-            $detail->Order_Status= $req->compOwner;
+            $detail->Order_Status= $req->orderstatus;
             $detail->Comp_Owner= $req->compOwner;
             $detail->Comp_Model = $req->compModel;
             $detail->Warranty_Date = $req->warrantyDate;

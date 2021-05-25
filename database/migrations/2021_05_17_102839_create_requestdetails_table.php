@@ -22,8 +22,8 @@ class CreateRequestdetailsTable extends Migration
             $table->date('Warranty_Date');
             $table->integer('Problems_Frequency');
             $table->string('Problems_Reported');
-            $table->string('Reason');
-            $table->float('Estimated_Cost');
+            $table->string('Reason')->nullable();
+            $table->float('Estimated_Cost')->nullable();
             $table->string('Confirmation_Status');
             $table->string('Send_Status');
             $table->timestamps();

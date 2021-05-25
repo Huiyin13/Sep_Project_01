@@ -21,6 +21,7 @@ table, th, td {
   
     <th>Order ID</th> 
     <th>Date</th>
+    <th>Estimated Cost</th>
     <th>Customer Confirmation Status</th>
     <th>Repair Status</th>
     <th>Action</th>
@@ -32,11 +33,12 @@ table, th, td {
         
         <td>{{ $row->OrderID }}</td>
         <td>{{ $row->created_at }}</td>
+        <td>{{ $row->Estimated_Cost }}</td>
         <td>{{ $row->Confirmation_Status }}</td>
         <td>{{ $row->Order_Status }}</td>
         
         <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
-        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.custEdit', $row->OrderID) }}'">View or Update</button>
+        <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.custEdit', $row->OrderID) }}'">CONFIRM/CANCEL REPAIR</button>
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button></td>
