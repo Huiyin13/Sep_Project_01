@@ -34,6 +34,7 @@
 					</tr>
 					<!-- Reminder for customer -->
 					<tr>
+						<td></td>
 						<td style="color:red;font-size: 10px">Contact us, if need to update your IC. </td>
 						
 					</tr>
@@ -52,6 +53,11 @@
 						<td>Phone Number: </td>
 						<td><input type="text" name="Customer_Phone"  id="Customer_Phone" value="{{ $row->Customer_Phone}}" required></td>
 					</tr> 
+					<!-- Customer Password --> 
+					<tr>
+						<td>Password </td>
+						<td><input type="password" name="Customer_Password"  id="Customer_Password" required></td>
+					</tr>
 					<!-- Submit button -->
 					<tr>
 						<td></td>
