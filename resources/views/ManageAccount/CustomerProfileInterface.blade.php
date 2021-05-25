@@ -54,8 +54,9 @@
 					<!-- Submit button -->
 					<tr>
 						<td></td>
-						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> <button type="button" style="background-color: black; border: none; color: white; padding: 5px 10px">CHANGE PASSWORD</button></td>
+						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> </td>
 						<td></td>
+						<td><button type="button" onclick="location.href='{{ route('ManageAccount.changePassword',  $row->Customer_ID) }}'" style="background-color: black; border: none; color: white; padding: 5px 10px">CHANGE PASSWORD</button></td>
 					</tr>
 					@endforeach
 				</table>
