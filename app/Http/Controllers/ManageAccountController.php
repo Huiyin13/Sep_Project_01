@@ -81,5 +81,55 @@ class ManageAccountController extends Controller
         }
     }
 
+ /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword($id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        return view('ManageAccount.ChangePasswordInterface', compact("data"));
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        $validatedPass = $request->Customer_Passwordo;
+        foreach($data as $data1){
+            $data2 = $data1->Customer_Password;
+        }
+        if ( $validatedPass == $data2) {
+            
+            $validatedData = $request->validate([
+                'Customer_Password' => 'required|max:255',
+
+            ]);
+            customer::where('Customer_ID', $id)->update($validatedData);
+            $data = customer::where('Customer_ID', $id)->get();
+            $message = "Profile is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.CustomerProfileInterface', compact("data"));
+        } 
+        else {
+            $data = customer::where('Customer_ID', $id)->get();
+             $message = "Password INCORRECT please try again";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.ChangePasswordInterface', compact("data"));
+        }
+    }
+
     
 }
+
