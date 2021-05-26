@@ -68,3 +68,16 @@ Route::resource('ManageAccount', 'ManageAccountController');
 Route::get('test', function () {
     return view('ManageAccount.test');
 });
+
+//Route for Manage PickUP and Delivery
+Route::get('pickupdelivery',function(){
+    return view('ManagePickUpDeliver.testuse');
+});
+Route::get('/riderViewPickList','PickUpDeliveryController@riderViewPickList')->name('ManagePickUpDeliver.riderPk');
+Route::get('/riderViewDeliver','PickUpDeliveryController@riderViewDeliver')->name('ManagePickUpDeliver.riderDv');
+Route::get('/cusViewDelivery/{id}','PickUpDeliveryController@custView')->name('ManagePickUpDeliver.cuslist');
+Route::get('/riderViewDetail','PickUpDeliveryController@riderViewPickDetail')->name('ManagePickUpDeliver.riderDetail');
+Route::get('/riderViewDetail','PickUpDeliveryController@riderViewPickDetail')->name('ManagePickUpDeliver.pick');
+Route::get('/riderViewDetail','PickUpDeliveryController@riderViewDetail')->name('ManagePickUpDeliver.riderDeliver');
+Route::get('/CusViewDetail/{id}/cusDetail','PickUpDeliveryController@cusViewDetail')->name('ManagePickUpDeliver.cusDetail');
+Route::post('/CusViewDetail/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.add');
