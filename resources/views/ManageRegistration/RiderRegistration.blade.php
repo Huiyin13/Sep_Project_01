@@ -78,7 +78,7 @@
 		}
         // Preview Rider Licence Photo script - array problem 
         function previewLicencePhoto(input){
-			var file = $("input[type=file]").get(0).files[0];
+			var file = $("input[type=file]").get(1).files[0];
 			if(file){
 				var reader = new FileReader();
 				reader.onload = function(){
