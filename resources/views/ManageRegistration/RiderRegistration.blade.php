@@ -12,6 +12,11 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm col-sm-offset">
+			@if(session()->has('message'))
+    			<div class="alert alert-warning">
+        			{{ session()->get('message') }}
+    			</div>
+			@endif
 				<h2><b>Rider Registration</b></h2>
                 <form action='{{ url("register/$url") }}' method="post" enctype="multipart/form-data">
 				@csrf
@@ -52,7 +57,7 @@
 					</tr>
 					<tr> 
 						<td>Confirm Password: </td>
-						<td><input type="password" name="password_confirmation" placeholder="Please re-enter the password above correctly" size="50" required></td>
+						<td><input type="password" name="Rider_Password_confirmation" placeholder="Please re-enter the password above correctly" size="50" required></td>
 					</tr>
 					<tr>
 						<td></td>
