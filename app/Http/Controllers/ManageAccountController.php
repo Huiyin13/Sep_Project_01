@@ -117,13 +117,11 @@ class ManageAccountController extends Controller
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
             
-            $validatedData = $request->validate([
-                'Customer_Password' => 'required|max:255',
-
-            ]);
-            customer::where('Customer_ID', $id)->update($validatedData);
+            $validatedData = Hash::make($request->Customer_Password);
+            
+            DB::select("UPDATE customers set Customer_Password = '$validatedData' where Customer_ID = ?",[$id]);
             $data = customer::where('Customer_ID', $id)->get();
-            $message = "Profile is successful updated!";
+            $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.CustomerProfileInterface', compact("data"));
         } 
@@ -205,7 +203,7 @@ class ManageAccountController extends Controller
     {
         //
         $data = rider::where('Rider_ID', $id)->get();
-        return view('ManageAccount.ChangePasswordInterface', compact("data"));
+        return view('ManageAccount.ChangePasswordRInterface', compact("data"));
         
     }
 
@@ -224,14 +222,15 @@ class ManageAccountController extends Controller
         foreach($data as $data1){
             $data2 = $data1->Rider_Password;
         }
-       // $verify = password_verify($validatedPass,$data2);
-        if ( $validatedPass == $data2) {
+        $verify = password_verify($validatedPass,$data2);
+        if ( $verify) {
             
             $validatedData = Hash::make($request->Rider_Password);
             
-            rider::where('Rider_ID', $id)->update(explode(",", $validatedData));
+            DB::select("UPDATE riders set Rider_Password = '$validatedData' where Rider_ID = ?",[$id]);
+
             $data = rider::where('Rider_ID', $id)->get();
-            $message = "Profile is successful updated!";
+            $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.RiderProfileInterface', compact("data"));
         } 
@@ -239,7 +238,7 @@ class ManageAccountController extends Controller
             $data = rider::where('Rider_ID', $id)->get();
              $message = "Password INCORRECT please try again";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.ChangePasswordInterface', compact("data"));
+            return view('ManageAccount.ChangePasswordRInterface', compact("data"));
         }
     }
 
