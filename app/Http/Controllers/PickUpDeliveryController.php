@@ -9,50 +9,49 @@ use App\Models\PickUpDeliveryModel;
 
 class PickUpDeliveryController extends Controller
 {
-    
-    public function riderViewPickList(){
-        $data = manageRepairStatusModel::where('Order_Status', "Pending")->get();
-        //$data = DB::table('requestdetails')->where('Order_Status','Pending')->get();
-        return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
-    }
-
-    public function riderViewDeliver(){
-        $data = manageRepairStatusModel::where('Order_Status', "Complete")->get();
-        return view('ManagePickUpDeliver.DeliverList',['data'=>$data]);
-    }
-
+    //customer view pick up list
     public function custView($id)
     {
-        $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Order_Status', "Pending")->get();
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
         return view('ManagePickUpDeliver.CusDeliveryList', compact("data"));
     }
-
-    public function cusViewDetail($id){
+    //customer view delivery list
+    public function custDeliverView($id)
+    {
+        $data = PickUpDeliveryModel::where('Customer_ID', $id)->where('Status',"SuccessPick")->get();
+        return view('ManagePickUpDeliver.CusDeliverList', compact("data"));
+    }
+    //customer view pickup detail
+    public function cusViewDetail ($id){
         $data = manageRepairStatusModel::findOrFail($id);
         return view('ManagePickUpDeliver.DeliveryDetail', compact("data"));
     }
-
-    public function riderViewDetail(){
-        $data = manageRepairRequestModel::findOrFail($id);
-        return view('ManagePickUpDeliver.riderDetail', compact("data"));
-    }
-
-    public function riderViewPickDetail(){
+    //customer view deliver detail
+    public function cusDeliverDetail ($id){
         
+        $data = PickUpDeliveryModel::findOrFail($id);
+        return view('ManagePickUpDeliver.CusDeliverDetail', compact("data"));
     }
-    /*public function cusAddPickUp(Request $req){
-        $req->validate([
-            'Customer_ID' => $data['Customer_ID'],
-            'OrderID' => $data['OrderID'],
-            'PickUp_Date' => $data['PickUp_Date'],
-            'PickUp_Time' => $data['PickUp_Time'],
-            'PickUp_Add' => $data['PickUp_Add'],
-            'Status' => $data['Status'],
-        ]);
-        PickUpDeliveryModel::create($req->all());
 
-        return redirect('/ManagePickUpDeliver.cuslist')->with('success', 'Repair Status is successfully updated');
-    }*/
+    public function riderViewPickList(){
+        $data = PickUpDeliveryModel::where('Status', "Pending")->get();
+        return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
+    }
+
+    public function riderViewPickDetail($id){
+        $data = PickUpDeliveryModel::findOrFail($id);
+        return view('ManagePickUpDeliver.PickUpDetail', compact("data"));
+    }
+
+    public function riderViewDeliver(){
+        $data = PickUpDeliveryModel::where('Status', "SuccessPick")->get();
+        return view('ManagePickUpDeliver.DeliverList',['data'=>$data]);
+    }
+
+    public function riderViewDeliverDetail($id){
+        $data = PickUpDeliveryModel::findOrFail($id);
+        return view('ManagePickUpDeliver.DeliverDetail', compact("data"));
+    }
 
     public function cusAddPickUp(Request $req){
 
@@ -60,29 +59,53 @@ class PickUpDeliveryController extends Controller
         $data->Customer_ID = $req->Customer_ID;
         $data->OrderID = $req->OrderID;
         $data->PickUp_Date = $req->PickUp_Date;
-        $date->PickUp_Time = $req->PickUp_Time;
-        $date->PickUp_Add = $req->PickUp_Add;
+        $data->PickUp_Time = $req->PickUp_Time;
+        $data->PickUp_Add = $req->PickUp_Add;
         $data->Status = $req->Status;
         $data->save();
-        return view('ManagePickUpDeliver.testuse', compact("data"));
+        return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
     }
 
-    public function riderUpdatePickup(Request $req){
+    public function update(Request $req, $id){
+            $validatedData = $req->validate([
+                'Status' => 'required|max:255'
+            ]);
+            PickUpDeliveryModel::where('PickUpDeliver_ID', $id)->update($validatedData);
+            $message = "Update status success";
+            echo "<script type ='text/javascript'>alert('$message');</script>";
+            $data = PickUpDeliveryModel::where('Status', "Pending")->get();
+            return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
+        
         
     }
 
-    public function riderUpdateDeliver(){
-        $data = PickUPDeliveryModel::findOrFail($id);
-        return view('ManagePickUpDeliver.DeliverList', compact("data"));
+    public function riderUpdateDeliver(Request $req, $id){
+        $validatedData = $req->validate([
+            'Status' => 'required|max:255',
+            'Deliver_Add'  => 'required',
+            'Deliver_Time' => 'required',
+            'Deliver_Date' => 'required',
+        ]);
+        PickUpDeliveryModel::where('PickUpDeliver_ID', $id)->update($validatedData);
+        $message = "Update status success";
+        echo "<script type ='text/javascript'>alert('$message');</script>";
+        $data = PickUpDeliveryModel::where('Status', "SuccessPick")->get();
+        return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
     }
 
-    public function riderEditTime(){
-        $data = PickUPDeliveryModel::findOrFail($id);
+   /* public function riderEditTime(Request $req, $id){
+        $validatedData = $req->validate([
+            'Deliver_Time' => 'required|max:255',
+        ]);
+        PickUpDeliveryModel::where('PickUpDeliver_ID', $id)->update($validatedData);
     }
 
-    public function riderEditDate(){
-        $data = PickUPDeliveryModel::findOrFail($id);
-    }
+    public function riderEditDate(Request $req, $id){
+        $validatedData = $req->validate([
+            'Deliver_Date' => 'required|max:255',
+        ]);
+        PickUpDeliveryModel::where('PickUpDeliver_ID', $id)->update($validatedData);
+    }*/
 
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>Rider View PickUp</title>
+<title>Customer View Deliver</title>
 <style>
   table,th,td{
     text-align:center;
@@ -23,7 +23,7 @@
 <html>
 <body>
 
-<h2>Rider View PickUp</h2>
+<h2>Customer View Deliver</h2>
 <p>@if(session()->get('success'))
       {{ session()->get('success') }}  
 <br></p>
@@ -44,7 +44,7 @@
         <td>{{ $row->OrderID }}</td>
         <td>{{ $row->Customer_ID}}</td>
         <td>{{ $row->Status}}</td>
-        <td><button type="button" onclick="location.href='{{ route('ManagePickUpDeliver.riderDetail', $row->PickUpDeliver_ID)}}'">View</button>
+        <td><button type="button" onclick="location.href='{{ route('ManagePickUpDeliver.CusDeliverDetail', $row->PickUpDeliver_ID)}}'">View</button>
         @csrf</td>
       </tr>
       @endforeach

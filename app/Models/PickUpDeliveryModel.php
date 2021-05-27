@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PickUpDeliveryModel extends Model
 {
     use HasFactory;
+    public $table = "PickupDelivers";
+    protected $primaryKey = 'PickUpDeliver_ID';
 }

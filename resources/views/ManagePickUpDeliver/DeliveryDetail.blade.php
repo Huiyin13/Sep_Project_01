@@ -9,14 +9,14 @@
   padding: 10px;
 }
 </style>
-    <title>Customer View Pick Up and Delivery Detail</title>
+    <title>Customer View Pick Up </title>
 </head>
 <body>
 
-<h2>Customer View PickUp and Delivery Detail</h2>
+<h2>Customer View PickUp</h2>
 
 <div class="center">
-<form action="{{route('ManagePickUpDeliver.add',$data->OrderID)}}" method="POST">
+<form action="{{ route('ManagePickUpDeliver.cusAddPickUp')}}" method="POST">
 @csrf
         <table>
             <tr>
@@ -33,7 +33,7 @@
                 <td><input type="date" id="PickUp_Date" name="PickUp_Date"></td></tr>
             <tr>
                 <td>PickUp Time</td>
-                <td><input type="text" id="PickUp_Time" name="PickUp_Time"></td></tr><tr>
+                <td><input type="time" id="PickUp_Time" name="PickUp_Time"></td></tr><tr>
             <tr>
                 <td>PickUp Address</td>
                 <td><textarea type="text" rows="4" cols="50" id="PickUp_Add" name="PickUp_Add"></textarea></td></tr>

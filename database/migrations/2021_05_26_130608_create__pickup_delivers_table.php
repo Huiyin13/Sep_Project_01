@@ -21,9 +21,9 @@ class CreatePickupDeliversTable extends Migration
             $table->date('PickUp_Date');
             $table->string('PickUp_Time');
             $table->string('PickUp_Add');
-            $table->date('Deliver_Date');
-            $table->string('Deliver_Time');
-            $table->string('Deliver_Add');
+            $table->date('Deliver_Date')->nullable();
+            $table->string('Deliver_Time')->nullable();
+            $table->string('Deliver_Add')->nullable();
             $table->timestamps();
         });
     }
