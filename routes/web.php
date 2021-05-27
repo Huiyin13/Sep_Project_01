@@ -68,3 +68,15 @@ Route::resource('ManageAccount', 'ManageAccountController');
 Route::get('test', function () {
     return view('ManageAccount.test');
 });
+
+//Route for Manage Payment
+Route::get('button', function () {
+    return view('ManagePayment.Button');
+});
+    Route::post('/ManagePayment/paymentDetails','PaymentController@paymentDetails')->name('ManagePayment.Payment1');
+
+    Route::post('/ManagePayment/paymentCOD','PaymentController@paymentCOD')->name('ManagePayment.PaymentCOD');
+    
+    Route::get("/PaymentStatusInterface/{customerID}/{orderID}/{estimatedCost}/{customerName}/{customerAddress}", 'PaymentController@paymentPayPal');
+
+    
