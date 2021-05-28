@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class staff extends Model
 {
     use HasFactory;
+    public $table = "staffs";
+    protected $primaryKey = 'Staff_ID';
 }
