@@ -12,10 +12,10 @@ class manageRepairStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        /*$$data = manageRepairStatusModel::where([
+        $data = manageRepairStatusModel::where([
             ['OrderID', '!=', Null],
             [function ($query) use ($request) {
                 if (($term = $request->term)) {
@@ -27,9 +27,9 @@ class manageRepairStatusController extends Controller
             ->paginate(10);
 
         return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))
-            ->with('i', (request()->input('page', 1) - 1) * 5);*/
-        $data = manageRepairStatusModel::where('Send_Status', "SUBMIT")->get();
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+        /*$data = manageRepairStatusModel::all();
+        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));*/
     }
 
     /**
@@ -62,13 +62,6 @@ class manageRepairStatusController extends Controller
     public function show($id)
     {
         
-    }
-
-    public function search(Request $request)
-    {
-        $search = $request->get('search');
-        $data = manageRepairStatusModel::where('OrderID', 'like', '%' . $search. '%')->get();
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
     }
 
     /**
@@ -119,7 +112,7 @@ class manageRepairStatusController extends Controller
 
     public function custViewAll($id)
     {
-        $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Send_Status', "SUBMIT")->get();
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 

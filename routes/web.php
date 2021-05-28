@@ -77,6 +77,33 @@ Route::get('test', function () {
     return view('ManageAccount.test');
 });
 
+
+//Route for Manage PickUP and Delivery
+Route::get('pickupdelivery',function(){
+    return view('ManagePickUpDeliver.testuse');
+});
+Route::get('/riderViewPickList','PickUpDeliveryController@riderViewPickList')->name('ManagePickUpDeliver.riderPk');
+Route::get('/ViewPick/{id}/View','PickUpDeliveryController@riderViewPickDetail')->name('ManagePickUpDeliver.riderDetail');
+Route::post('/ViewPick/{id}/update','PickUpDeliveryController@update')->name('ManagePickUpDeliver.update');
+
+Route::get('/riderViewDeliver','PickUpDeliveryController@riderViewDeliver')->name('ManagePickUpDeliver.riderDv');
+Route::get('/riderViewDeliver/{id}/View','PickUpDeliveryController@riderViewDeliverDetail')->name('ManagePickUpDeliver.riderDeliver');
+Route::post('/riderViewDeliver/{id}/riderUpdateDeliver','PickUpDeliveryController@riderUpdateDeliver')->name('ManagePickUpDeliver.riderUpdateDeliver');
+
+
+Route::post('/riderViewDeliver/{id}/riderEditDate','PickUpDeliveryController@riderEditDate')->name('ManagePickUpDeliver.riderEditDate');
+Route::post('/riderViewDeliver/{id}/riderEditTime','PickUpDeliveryController@riderEditTime')->name('ManagePickUpDeliver.riderEditTime');
+
+Route::get('/cusViewDelivery/{id}','PickUpDeliveryController@custView')->name('ManagePickUpDeliver.cuslist');
+Route::get('/custDeliverView/{id}','PickUpDeliveryController@custDeliverView')->name('ManagePickUpDeliver.custDeliverView');
+
+//Customer View PickUp Detail
+Route::get('/cusViewDelivery/{id}/cusViewDetail','PickUpDeliveryController@cusViewDetail')->name('ManagePickUpDeliver.cusViewDetail');
+Route::get('/CusDetail/{id}/CusDeliverDetail','PickUpDeliveryController@CusDeliverDetail')->name('ManagePickUpDeliver.CusDeliverDetail');
+
+Route::post('/CusViewDetail/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.add');
+Route::post('add','PickUpDeliveryController@cusAddPickUp');
+
 //Route for Manage Payment
 Route::get('button', function () {
     return view('ManagePayment.Button');
@@ -88,3 +115,4 @@ Route::get('button', function () {
     Route::get("/PaymentStatusInterface/{customerID}/{orderID}/{estimatedCost}/{customerName}/{customerAddress}", 'PaymentController@paymentPayPal');
 
     
+
