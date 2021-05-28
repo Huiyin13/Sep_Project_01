@@ -60,14 +60,23 @@ Route::post('/register/customer', 'ManageRegistrationController@custreg');
 Route::post('/register/rider', 'ManageRegistrationController@riderreg');
 
 //Route For Manage Account
+//Customer
 Route::get('/ManageAccount/{id}/selectProfile', 'ManageAccountController@selectProfile')->name('ManageAccount.selectProfile');
 Route::get('/ManageAccount/{id}/editProfile', 'ManageAccountController@editProfile')->name('ManageAccount.editProfile');
 Route::post('/ManageAccount/{id}/update', 'ManageAccountController@update')->name('ManageAccount.update');
-Route::post('/ManageAccount/{id}/validatePassword', 'ManageAccountController@validatePassword')->name('ManageAccount.validatePassword');
+Route::get('/ManageAccount/{id}/changePassword', 'ManageAccountController@changePassword')->name('ManageAccount.changePassword');
+Route::get('/ManageAccount/{id}/changePass', 'ManageAccountController@changePass')->name('ManageAccount.changePass');
+//Rider
+Route::get('/ManageAccount/{id}/selectProfileR', 'ManageAccountController@selectProfileR')->name('ManageAccount.selectProfileR');
+Route::get('/ManageAccount/{id}/editProfileR', 'ManageAccountController@editProfileR')->name('ManageAccount.editProfileR');
+Route::post('/ManageAccount/{id}/updateR', 'ManageAccountController@updateR')->name('ManageAccount.updateR');
+Route::get('/ManageAccount/{id}/changePasswordR', 'ManageAccountController@changePasswordR')->name('ManageAccount.changePasswordR');
+Route::get('/ManageAccount/{id}/changePassR', 'ManageAccountController@changePassR')->name('ManageAccount.changePassR');
 Route::resource('ManageAccount', 'ManageAccountController');
 Route::get('test', function () {
     return view('ManageAccount.test');
 });
+
 
 //Route for Manage PickUP and Delivery
 Route::get('pickupdelivery',function(){
@@ -94,3 +103,16 @@ Route::get('/CusDetail/{id}/CusDeliverDetail','PickUpDeliveryController@CusDeliv
 
 Route::post('/CusViewDetail/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.add');
 Route::post('add','PickUpDeliveryController@cusAddPickUp');
+
+//Route for Manage Payment
+Route::get('button', function () {
+    return view('ManagePayment.Button');
+});
+    Route::post('/ManagePayment/paymentDetails','PaymentController@paymentDetails')->name('ManagePayment.Payment1');
+
+    Route::post('/ManagePayment/paymentCOD','PaymentController@paymentCOD')->name('ManagePayment.PaymentCOD');
+    
+    Route::get("/PaymentStatusInterface/{customerID}/{orderID}/{estimatedCost}/{customerName}/{customerAddress}", 'PaymentController@paymentPayPal');
+
+    
+

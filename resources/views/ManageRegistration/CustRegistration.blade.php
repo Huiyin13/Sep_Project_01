@@ -17,6 +17,11 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
+			@if(session()->has('message'))
+    			<div class="alert alert-warning">
+        			{{ session()->get('message') }}
+    			</div>
+			@endif
 				<h2><b>Customer Registration</b></h2>
 				<form action='{{ url("register/$url") }}' method="post">
 				@csrf
