@@ -9,14 +9,14 @@
   padding: 10px;
 }
 </style>
-    <title>Customer View Pick Up </title>
+    <title>Customer View Pick Up and Delivery Detail</title>
 </head>
 <body>
 
 <h2>Customer View PickUp</h2>
 
 <div class="center">
-<form action="{{ route('ManagePickUpDeliver.cusAddPickUp')}}" method="POST">
+<form action="add" method="POST">
 @csrf
         <table>
             <tr>
