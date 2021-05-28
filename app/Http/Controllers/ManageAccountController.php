@@ -242,18 +242,29 @@ class ManageAccountController extends Controller
         }
     }
     
-    //Staff
-    public function index()
+    //Staff-->Customer
+    public function selectUserType($id)
     {
-        $data = customer::get();
+        
+        $data = customer::all();
         return view('ManageAccount.CustomerListInterface', compact("data"));
     }
     
     public function search(Request $request)
     {
-        $search = $request->get('search');
-        $data = customer::where('Customer_ID', 'like', '%' . $search. '%')->get();
-        return view('ManageAccount.CustomerListInterface', compact("data"));
+        $data = customer::where([
+            ['Customer_Name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('Customer_Name', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('Customer_Name', 'desc')
+            ->paginate(10);
+
+        return view('ManageAccount.CustomerListInterface', compact("data"))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function viewProfile($id)
@@ -288,7 +299,7 @@ class ManageAccountController extends Controller
         } 
         else {
             $data = customer::where('Customer_ID', $id)->get();
-             $message = "Password INCORRECT please try again";
+             $message = "Numeric ONLY!";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.CustomerUpdateInterface', compact("data"));
         }
@@ -318,12 +329,12 @@ class ManageAccountController extends Controller
         foreach($data2 as $data1){
             $data1 = $data2->Staff_Password;
         }
-        //$verify = password_verify($validatedPass,$data2);
-        //if ( $verify) {
-        if($validatedPass == $data1){
+        $verify = password_verify($validatedPass,$data2);
+        if ( $verify) {
+        //if($validatedPass == $data1){
             
             
-            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'Banned' where Customer_ID = ?",[$id]);
+            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'BANNED' where Customer_ID = ?",[$id]);
             $data = customer::where('Customer_ID', $id)->get();
             $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -337,6 +348,139 @@ class ManageAccountController extends Controller
         }
     }
 
+    //Staff-->Rider
+    public function selectUserTypeR($id)
+    {
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'APPROVED' OR Rider_Status = 'BANNED' OR Rider_Status = 'REJECTED' ");
+        return view('ManageAccount.RiderListInterface', compact("data"));
+    }
+    
+    public function searchR(Request $request)
+    {
+        $search = $request->get('search');
+        $data = rider::where('Rider_Name', 'like', '%' . $search. '%')->get();
+        return view('ManageAccount.RiderListInterface', compact("data"));
+    }
 
+    public function viewProfileR($id)
+    {
+        $data = rider::where('Rider_ID', $id)->get();
+        return view('ManageAccount.RiderInformationInterface', compact("data"));
+    }
+
+    public function updateICR($id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        return view('ManageAccount.ICUpdateRInterface', compact("data"));
+    }
+
+    public function updateICRR(Request $request, $id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        $ic = $request->Rider_IC;
+        $checkIC = is_numeric($ic);
+        if ( $checkIC) {
+            
+            $validatedData = $request->validate([
+                'Rider_IC' => 'required|int',
+
+            ]);
+            rider::where('Rider_ID', $id)->update($validatedData);
+            $message = "IC number is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.test');
+        } 
+        else {
+            $data = rider::where('Rider_ID', $id)->get();
+             $message = "Numeric ONLY!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.RiderInformationInterface', compact("data"));
+        }
+    }
+
+    public function banUserR($id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        return view('ManageAccount.BanInformationRInterface', compact("data"));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function banR(Request $request, $id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        $data2 = DB::select("SELECT Staff_Password FROM staffs");
+        $reason = $request->Reason;
+        $validatedPass = $request->Staff_Password;
+        
+        $verify = password_verify($validatedPass,$data2);
+        if ( $verify) {
+        //if($validatedPass == $data1){
+            
+            
+            DB::select("UPDATE riders set Ban_Reason = '$reason', 'Rider_Status = 'Banned' where Rider_ID = ?",[$id]);
+            $data = rider::where('Rider_ID', $id)->get();
+            $message = "Password is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.RiderInformationInterface', compact("data"));
+        } 
+        else {
+            $data = rider::where('Rider_ID', $id)->get();
+             $message = "Password INCORRECT please try again";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.BanInformationRInterface', compact("data"));
+        }
+    }
+
+    //Staff-->Rider Registration
+    public function viewRegister($id)
+    {
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
+        return view('ManageAccount.RegistrationListInterface', compact("data"));
+    }
+
+    public function selectProfileRR($id)
+    {
+        $data = rider::where('Rider_ID', $id)->get();
+        return view('ManageAccount.RegisterInformationInterface', compact("data"));
+    }
+
+    public function approve($id)
+    {
+        //
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
+        rider::where('Rider_ID', $id)->update(array('Rider_Status' => 'APPROVED'));
+        return view('ManageAccount.RegistrationListInterface', compact("data"));
+    }
+
+    public function reject($id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        return view('ManageAccount.RejectRegistrationInterface', compact("data"));
+    }
+
+    public function rejectR(Request $request, $id)
+    {
+        //
+        $data = rider::where('Rider_ID', $id)->get();
+        $reason = $request->Reason;
+        DB::select("UPDATE riders set Reason = '$reason' , Rider_Status = 'REJECTED' where Rider_ID = ?",[$id]);
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
+        $message = "Rejected!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.RegistrationListInterface', compact("data"));
+        
+        
+    }
 }
 

@@ -17,7 +17,7 @@
 			<div class="col-sm-8 col-sm-offset-8">
 			@foreach($data as $row)
 				<h2><b>Rider Details</b></h2>
-				<form action="{{ route('ManageAccount.updateICR', $row->Rider_ID)}}" method="get">
+				<form action="{{ route('ManageAccount.approve', $row->Rider_ID)}}" method="get">
 				@csrf
 				<table>
 				
@@ -25,11 +25,13 @@
 					<tr>
 						<td>Name (as per IC): </td>
 						<td>{{ $row->Rider_Name }}</td>
+						<td>IC: </td>
 					</tr>
 					<!-- Rider Identification Card number -->
 					<tr>
 						<td>Identification Card (IC) Number: </td>
 						<td>{{ $row->Rider_IC }}</td>
+						<td colspan="3" rowspan="2" align="center"><img src="/images/IC/{{$row->Rider_IC_Photo}}"  width="150px" height="150px" style="margin-top: 4px; margin-left: 4px; margin-bottom: 4px; margin-right: 4px;"></td>
 					</tr>
 					
 					<!-- Rider Email -->
@@ -41,31 +43,22 @@
 					<tr> 
 						<td>Address: </td>
 						<td>{{ $row->Rider_Address }}</td>
+						<td>Driving Licence: </td>
 					</tr>
 					<!-- Rider Phone number -->
 					<tr> 
 						<td>Phone Number: </td>
 						<td>{{ $row->Rider_Phone }}</td>
-					</tr>
-                    @if($row->Rider_Status == "BANNED")
-                    <tr> 
-						<td>Ban Reason: </td>
-						<td>{{ $row->Reason }}</td>
+						<td colspan="3" rowspan="2"align="center"><img src="/images/Licence/{{$row->Rider_Licence}}"  width="150px" height="150px" style="margin-top: 4px; margin-left: 4px; margin-bottom: 4px; margin-right: 4px;"></td>
 					</tr>
 					<!-- Submit button -->
+					<tr></tr>
 					<tr>
 						<td></td>
-						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> </td>
-					</tr>
-                    @else
-					<!-- Submit button -->
-					<tr>
+						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">APPROVE</button> </td>
 						<td></td>
-						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> </td>
-						<td></td>
-						<td><button type="button" onclick="location.href='{{ route('ManageAccount.banUserR',  $row->Rider_ID) }}'" style="background-color: black; border: none; color: white; padding: 5px 10px">BAN USER</button></td>
+						<td><button type="button" onclick="location.href='{{ route('ManageAccount.reject',  $row->Rider_ID) }}'" style="background-color: black; border: none; color: white; padding: 5px 10px">REJECT</button></td>
 					</tr>
-					@endif
 					@endforeach
 				</table>
 				

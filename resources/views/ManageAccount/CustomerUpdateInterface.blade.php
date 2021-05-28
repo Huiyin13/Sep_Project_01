@@ -46,7 +46,7 @@
 					<!-- Customer Address -->
 					<tr> 
 						<td>Address: </td>
-						<td><input type="text" name="Customer_Address" id="Customer_Address" value="{{ $row->Customer_Address}}" required></td>
+						<td><textarea type="text"  row="5" cols="52" name="Customer_Address" id="Customer_Address"  required>{{ $row->Customer_Address}}</textarea></td>
 					</tr>
 					<!-- Customer Phone number -->
 					<tr> 

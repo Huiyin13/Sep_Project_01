@@ -71,6 +71,7 @@ class ManageRegistrationController extends Controller
             $var->Customer_Email = $request->Customer_Email;
             $var->Customer_Address = $request->Customer_Address;
             $var->Customer_Phone = $request->Customer_Phone;
+            $var->Customer_Status ="CLEAR";
             $var->Customer_Password = Hash::make($request->Customer_Password);
             $var->save();
             return redirect()->intended('auth/CustLogin');  
@@ -111,6 +112,7 @@ class ManageRegistrationController extends Controller
             $var->Rider_Address = $Rider_Address;
             $var->Rider_IC_Photo = $imageIC;
             $var->Rider_Licence = $imageLicence;
+            $var->Rider_Status ="PENDING";
             $var->Rider_Password = Hash::make($Rider_Password);
             $var->save();
             return redirect()->intended('auth/RiderLogin');  

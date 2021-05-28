@@ -15,13 +15,13 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-            @foreach($data as $row)
+           
 				<h2><b>Customer List</b></h2>
                 <form action="{{ route('ManageAccount.search') }}" method="GET" role="search">          
                     <input type="text" class="form-control mr-2" name="search" placeholder="Search Customer Name" id="term"> <button  type="submit" title="Search projects">Search</button>
                 </form>
                 <br>
-                <a href="{{ route('ManageAccount.index') }}" class=" mt-1">
+                <a href="{{ route('ManageAccount.selectUserType', 1) }}" class=" mt-1">
                     <button type="button" title="Refresh page">Refresh</button>
                     
                 </a>
@@ -36,6 +36,7 @@
                             <th>No</th> 
                             <th>Customer Name</th>
                             <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,13 +44,14 @@
                         <tr>
                             <td>{{ $row->Customer_ID }}</td>
                             <td>{{ $row->Customer_Name }}</td>
+                            <td>{{ $row->Customer_Status }}</td>
                             <td><button type="button"  style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.viewProfile', $row->Customer_ID) }}'">VIEW</button>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 </form>
-                @endforeach
+                
 
 </body>
 </html>
