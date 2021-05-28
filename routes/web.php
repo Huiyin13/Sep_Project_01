@@ -59,6 +59,28 @@ Route::get('/ManageRegistration/RiderRegistration', 'ManageRegistrationControlle
 Route::post('/register/customer', 'ManageRegistrationController@custreg');
 Route::post('/register/rider', 'ManageRegistrationController@riderreg');
 
+// Route for login 
+// Customer 
+Route::get('/auth/CustLogin', 'Auth\LoginController@showCustomerLoginForm');
+Route::post('/login/customer', 'Auth\LoginController@customerLogin');
+Route::get('customer', function () {
+    return view('customer');
+});
+
+// Rider 
+Route::get('/auth/RiderLogin', 'Auth\LoginController@showRiderLoginForm');
+Route::post('/login/rider', 'Auth\LoginController@riderLogin');
+Route::get('rider', function () {
+    return view('rider');
+});
+
+// Staff 
+Route::get('/auth/StaffLogin', 'Auth\LoginController@showStaffLoginForm');
+Route::post('/login/staff', 'Auth\LoginController@staffLogin');
+Route::get('staff', function () {
+    return view('staff');
+});
+
 //Route For Manage Account
 //Customer
 Route::get('/ManageAccount/{id}/selectProfile', 'ManageAccountController@selectProfile')->name('ManageAccount.selectProfile');

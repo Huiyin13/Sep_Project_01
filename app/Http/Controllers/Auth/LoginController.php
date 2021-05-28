@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// Added
+use Auth; 
+use Illuminate\Http\Request; 
+use App\Models\customer; 
+use App\Models\rider; 
+use App\Models\staff; 
 
 class LoginController extends Controller
 {
@@ -26,7 +32,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -36,5 +42,86 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:customer')->except('logout');
+        $this->middleware('guest:rider')->except('logout');
+        $this->middleware('guest:staff')->except('logout');
+    }
+
+    public function showCustomerLoginForm()
+    {
+        return view('auth.CustLogin', ['url' => 'customer']);
+    }
+
+    public function customerLogin(Request $request)
+    {
+        $id = $request->Customer_Email; 
+        $data1 = customer::where('Customer_Email', $id)->get();
+        $validatedEmail = $request->Customer_Email;
+        $validatedPass = $request->Customer_Password;
+        foreach($data1 as $data2){
+            $data3 = $data2->Customer_Email; 
+            $data4 = $data2->Customer_Password; 
+        }
+        $verify = password_verify($validatedPass,$data4);
+        if($validatedEmail == $data3 && $verify){
+            $validatedData = $request->validate([
+                'Customer_Email'   => 'required|email',
+                'Customer_Password' => 'required|min:8'
+            ]);
+            return view('/customer', compact(['data1']));
+        }
+        return redirect()->back()->with('message', 'The email and password does not match.');
+    }
+
+    public function showRiderLoginForm()
+    {
+        return view('auth.RiderLogin', ['url' => 'rider']);
+    }
+
+    public function riderLogin(Request $request)
+    {
+        $id = $request->Rider_Email; 
+        $data1 = rider::where('Rider_Email', $id)->get();
+        $validatedEmail = $request->Rider_Email;
+        $validatedPass = $request->Rider_Password;
+        foreach($data1 as $data2){
+            $data3 = $data2->Rider_Email; 
+            $data4 = $data2->Rider_Password; 
+        }
+        $verify = password_verify($validatedPass,$data4);
+        if($validatedEmail == $data3 && $verify){
+            $validatedData = $request->validate([
+                'Rider_Email'   => 'required|email',
+                'Rider_Password' => 'required|min:8'
+            ]);
+            return view('/rider', compact(['data1']));
+        }
+        return redirect()->back()->with('message', 'The email and password does not match.');
+    }
+
+    public function showStaffLoginForm()
+    {
+        return view('auth.StaffLogin', ['url' => 'staff']);
+    }
+
+    public function staffLogin(Request $request)
+    {
+        $id = $request->Staff_Name; 
+        $data1 = staff::where('Staff_Name', $id)->get();
+        $validatedName = $request->Staff_Name;
+        $validatedPass = $request->Staff_Password;
+        foreach($data1 as $data2){
+            $data3 = $data2->Staff_Name; 
+            $data4 = $data2->Staff_Password; 
+        }
+        $verify = password_verify($validatedPass,$data4);
+        if($validatedName == $data3 && $verify){
+            $validatedData = $request->validate([
+                'Staff_Name'   => 'required',
+                'Staff_Password' => 'required|min:8'
+            ]);
+            return view('/staff', compact(['data1']));
+        }
+        return redirect()->back()->with('message', 'The email and password does not match.');
     }
 }
