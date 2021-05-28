@@ -52,7 +52,12 @@
 						<td>Ban Reason: </td>
 						<td>{{ $row->Reason }}</td>
 					</tr>
-                    @endif
+					<!-- Submit button -->
+					<tr>
+						<td></td>
+						<td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">EDIT INFO</button> </td>
+					</tr>
+                    @else
 					<!-- Submit button -->
 					<tr>
 						<td></td>
@@ -60,6 +65,7 @@
 						<td></td>
 						<td><button type="button" onclick="location.href='{{ route('ManageAccount.banUserR',  $row->Rider_ID) }}'" style="background-color: black; border: none; color: white; padding: 5px 10px">BAN USER</button></td>
 					</tr>
+					@endif
 					@endforeach
 				</table>
 				

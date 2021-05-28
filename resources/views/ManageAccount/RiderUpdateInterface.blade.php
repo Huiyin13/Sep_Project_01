@@ -45,7 +45,7 @@
 					<!-- Rider Address -->
 					<tr> 
 						<td>Address: </td>
-						<td><input type="text" name="Rider_Address" id="Rider_Address" value="{{ $row->Rider_Address}}" required></td>
+						<td><textarea type="text"  row="5" cols="52" name="Rider_Address" id="Rider_Address"  required>{{ $row->Rider_Address}}</textarea></td>
 					</tr>
 					<!-- Rider Phone number -->
 					<tr> 

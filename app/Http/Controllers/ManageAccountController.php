@@ -245,15 +245,26 @@ class ManageAccountController extends Controller
     //Staff-->Customer
     public function selectUserType($id)
     {
+        
         $data = customer::all();
         return view('ManageAccount.CustomerListInterface', compact("data"));
     }
     
     public function search(Request $request)
     {
-        $search = $request->get('search');
-        $data = customer::where('Customer_Name', 'like', '%' . $search. '%')->get();
-        return view('ManageAccount.CustomerListInterface', compact("data"));
+        $data = customer::where([
+            ['Customer_Name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('Customer_Name', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('Customer_Name', 'desc')
+            ->paginate(10);
+
+        return view('ManageAccount.CustomerListInterface', compact("data"))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function viewProfile($id)
@@ -323,7 +334,7 @@ class ManageAccountController extends Controller
         //if($validatedPass == $data1){
             
             
-            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'Banned' where Customer_ID = ?",[$id]);
+            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'BANNED' where Customer_ID = ?",[$id]);
             $data = customer::where('Customer_ID', $id)->get();
             $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -340,7 +351,7 @@ class ManageAccountController extends Controller
     //Staff-->Rider
     public function selectUserTypeR($id)
     {
-        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'APPROVED' OR Rider_Status = 'BANNED'");
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'APPROVED' OR Rider_Status = 'BANNED' OR Rider_Status = 'REJECTED' ");
         return view('ManageAccount.RiderListInterface', compact("data"));
     }
     
@@ -416,7 +427,7 @@ class ManageAccountController extends Controller
         //if($validatedPass == $data1){
             
             
-            DB::select("UPDATE riders set Ban_Reason = '$reason' and Rider_Status = 'Banned' where Rider_ID = ?",[$id]);
+            DB::select("UPDATE riders set Ban_Reason = '$reason', 'Rider_Status = 'Banned' where Rider_ID = ?",[$id]);
             $data = rider::where('Rider_ID', $id)->get();
             $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -433,7 +444,7 @@ class ManageAccountController extends Controller
     //Staff-->Rider Registration
     public function viewRegister($id)
     {
-        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'Pending'");
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
         return view('ManageAccount.RegistrationListInterface', compact("data"));
     }
 
@@ -446,7 +457,7 @@ class ManageAccountController extends Controller
     public function approve($id)
     {
         //
-        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'Pending'");
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
         rider::where('Rider_ID', $id)->update(array('Rider_Status' => 'APPROVED'));
         return view('ManageAccount.RegistrationListInterface', compact("data"));
     }
@@ -462,14 +473,12 @@ class ManageAccountController extends Controller
     {
         //
         $data = rider::where('Rider_ID', $id)->get();
-        
         $reason = $request->Reason;
-        $validatedPass = $request->Staff_Password;
-        DB::select("UPDATE riders set Reason = '$reason' and Rider_Status = 'REJECTED' where Rider_ID = ?",[$id]);
-        $data = rider::where('Rider_ID', $id)->get();
+        DB::select("UPDATE riders set Reason = '$reason' , Rider_Status = 'REJECTED' where Rider_ID = ?",[$id]);
+        $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
         $message = "Rejected!";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.RegisterListInterface', compact("data"));
+            return view('ManageAccount.RegistrationListInterface', compact("data"));
         
         
     }

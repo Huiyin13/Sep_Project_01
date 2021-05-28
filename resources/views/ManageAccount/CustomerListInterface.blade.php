@@ -36,6 +36,7 @@
                             <th>No</th> 
                             <th>Customer Name</th>
                             <th>Action</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,7 @@
                         <tr>
                             <td>{{ $row->Customer_ID }}</td>
                             <td>{{ $row->Customer_Name }}</td>
+                            <td>{{ $row->Customer_Status }}</td>
                             <td><button type="button"  style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.viewProfile', $row->Customer_ID) }}'">VIEW</button>
                         </tr>
                         @endforeach
