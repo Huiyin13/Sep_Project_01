@@ -35,6 +35,7 @@
                         <tr>
                             <th>No</th> 
                             <th>Rider Name</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,7 +44,8 @@
                         <tr>
                             <td>{{ $row->Rider_ID }}</td>
                             <td>{{ $row->Rider_Name }}</td>
-                            <td><button type="button"  style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.viewProfileR', $row->Rider_ID) }}'">VIEW</button>
+                            <td>{{ $row->Rider_Status }}</td>
+                            <td><button type="button"  style="background-color: black; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.selectProfileRR', $row->Rider_ID) }}'">VIEW</button>
                         </tr>
                         @endforeach
                     </tbody>
