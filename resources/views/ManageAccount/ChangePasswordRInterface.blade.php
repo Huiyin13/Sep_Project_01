@@ -22,12 +22,12 @@
                 
 				<table>
                     
-                        <!-- Customer Old Password --> 
+                        <!-- Rider Old Password --> 
                         <tr>
                             <td>Old Password: </td>
                             <td><input type="password" name="Rider_Passwordo"  id="Rider_Passwordo" required></td>
                         </tr>
-                        <!-- Customer New Password --> 
+                        <!-- Rider New Password --> 
                         <tr>
                             <td>New Password: </td>
                             <td><input type="password" name="Rider_Password"  id="Rider_Password" required></td>

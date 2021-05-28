@@ -241,6 +241,102 @@ class ManageAccountController extends Controller
             return view('ManageAccount.ChangePasswordRInterface', compact("data"));
         }
     }
+    
+    //Staff
+    public function index()
+    {
+        $data = customer::get();
+        return view('ManageAccount.CustomerListInterface', compact("data"));
+    }
+    
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $data = customer::where('Customer_ID', 'like', '%' . $search. '%')->get();
+        return view('ManageAccount.CustomerListInterface', compact("data"));
+    }
+
+    public function viewProfile($id)
+    {
+        $data = customer::where('Customer_ID', $id)->get();
+        return view('ManageAccount.CustomerInformationInterface', compact("data"));
+    }
+
+    public function updateIC($id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        return view('ManageAccount.ICUpdateInterface', compact("data"));
+    }
+
+    public function updateICC(Request $request, $id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        $ic = $request->Customer_IC;
+        $checkIC = is_numeric($ic);
+        if ( $checkIC) {
+            
+            $validatedData = $request->validate([
+                'Customer_IC' => 'required|int',
+
+            ]);
+            customer::where('Customer_ID', $id)->update($validatedData);
+            $message = "IC number is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.test');
+        } 
+        else {
+            $data = customer::where('Customer_ID', $id)->get();
+             $message = "Password INCORRECT please try again";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.CustomerUpdateInterface', compact("data"));
+        }
+    }
+
+    public function banUser($id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        return view('ManageAccount.BanInformationInterface', compact("data"));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function ban(Request $request, $id)
+    {
+        //
+        $data = customer::where('Customer_ID', $id)->get();
+        $data2 = staff::get();
+        $reason = $request->Ban_reason;
+        $validatedPass = $request->Staff_Password;
+        foreach($data2 as $data1){
+            $data1 = $data2->Staff_Password;
+        }
+        //$verify = password_verify($validatedPass,$data2);
+        //if ( $verify) {
+        if($validatedPass == $data1){
+            
+            
+            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'Banned' where Customer_ID = ?",[$id]);
+            $data = customer::where('Customer_ID', $id)->get();
+            $message = "Password is successful updated!";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.CustomerInformationInterface', compact("data"));
+        } 
+        else {
+            $data = customer::where('Customer_ID', $id)->get();
+             $message = "Password INCORRECT please try again";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('ManageAccount.BanInformationInterface', compact("data"));
+        }
+    }
+
 
 }
 
