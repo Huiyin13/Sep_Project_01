@@ -56,7 +56,7 @@
             <div class="container" style="background-color: orange">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- Changed from Laravel to logo --> 
-                    <img src="images/Logo.png" alt="Dercs Logo" />
+                    <img src="/images/Logo.png" alt="Dercs Logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -113,6 +113,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('layouts.footer')
         </main>
     </div>
 </body>
