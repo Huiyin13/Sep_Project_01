@@ -1,3 +1,6 @@
+@extends('layouts.riderapp')
+
+@section('content')
 <!DOCTYPE html> 
 <html>
 <head>
@@ -20,9 +23,11 @@
                 @elseif ($row->Rider_Status == "REJECTED")
                 <h5><b>Sorry, {{$row->Rider_Name}}. Your registration is rejected. Please contact to our service center for more information. Here is the reason you are rejected.</b></h5>
                 <p>{{$row->Reason}}</p>
-                @else
+                @elseif ($row->Rider_Status == "REJECTED")
                 <h5><b> {{$row->Rider_Name}}, You are BANNED! Please contact to our service center for more information. Here is the reason you are banned.</b></h5>
                 <p>{{$row->Reason}}</p>
+				@else
+                <h5><b> {{$row->Rider_Name}}, your registration pending approval. Please contact to our service center for more information. </b></h5>
                 @endif
             @endforeach
 			</div>
@@ -30,3 +35,4 @@
 	</div>
 </body>
 </html>
+@endsection

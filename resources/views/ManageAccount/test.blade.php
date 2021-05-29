@@ -7,7 +7,7 @@
 <br></p>
 @endif
 
-     <button onclick="location.href='{{ route('ManageAccount.selectProfile', 1)}}'">Customer </button>
+     <button onclick="location.href='{{ route('ManageAccount.selectProfile', 8)}}'">Customer </button>
      <button onclick="location.href='{{ route('ManageAccount.selectProfileR', 4)}}'">Rider </button>
      <button onclick="location.href='{{ route('ManageAccount.selectUserType', 1)}}'">CUSTOMER</button>
      <button onclick="location.href='{{ route('ManageAccount.selectUserTypeR', 1) }}'">RIDER</button>

@@ -111,19 +111,28 @@ class ManageAccountController extends Controller
         //
         $data = customer::where('Customer_ID', $id)->get();
         $validatedPass = $request->Customer_Passwordo;
+        $length = strlen($request->Customer_Password);
         foreach($data as $data1){
             $data2 = $data1->Customer_Password;
         }
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
+            if($length>=8){
+                $validatedData = Hash::make($request->Customer_Password);
             
-            $validatedData = Hash::make($request->Customer_Password);
-            
-            DB::select("UPDATE customers set Customer_Password = '$validatedData' where Customer_ID = ?",[$id]);
-            $data = customer::where('Customer_ID', $id)->get();
-            $message = "Password is successful updated!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.CustomerProfileInterface', compact("data"));
+                DB::select("UPDATE customers set Customer_Password = '$validatedData' where Customer_ID = ?",[$id]);
+                $data = customer::where('Customer_ID', $id)->get();
+                $message = "Password is successful updated!";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                return view('ManageAccount.CustomerProfileInterface', compact("data"));
+            }
+            else {
+                $data = customer::where('Customer_ID', $id)->get();
+                $message = "Minimum password length of eight (8) is required. ";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                return view('ManageAccount.ChangePasswordInterface', compact("data"));
+            }
+           
         } 
         else {
             $data = customer::where('Customer_ID', $id)->get();
@@ -219,20 +228,29 @@ class ManageAccountController extends Controller
         //
         $data = rider::where('Rider_ID', $id)->get();
         $validatedPass = $request->Rider_Passwordo;
+        $length = strlen($request->Rider_Password);
         foreach($data as $data1){
             $data2 = $data1->Rider_Password;
         }
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
+            if($length>=8){
+                $validatedData = Hash::make($request->Rider_Password);
             
-            $validatedData = Hash::make($request->Rider_Password);
-            
-            DB::select("UPDATE riders set Rider_Password = '$validatedData' where Rider_ID = ?",[$id]);
-
-            $data = rider::where('Rider_ID', $id)->get();
-            $message = "Password is successful updated!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.RiderProfileInterface', compact("data"));
+                DB::select("UPDATE riders set Rider_Password = '$validatedData' where Rider_ID = ?",[$id]);
+    
+                $data = rider::where('Rider_ID', $id)->get();
+                $message = "Password is successful updated!";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                return view('ManageAccount.RiderProfileInterface', compact("data"));
+            }
+            else {
+                $data = rider::where('Rider_ID', $id)->get();
+                $message = "Minimum password length of eight (8) is required. ";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                return view('ManageAccount.ChangePasswordRInterface', compact("data"));
+            }
+           
         } 
         else {
             $data = rider::where('Rider_ID', $id)->get();
@@ -289,7 +307,7 @@ class ManageAccountController extends Controller
         } 
         else {
             $data = customer::where('Customer_ID', $id)->get();
-             $message = "Numeric ONLY!";
+             $message = "Identification Card (IC) Number only allow numerical input. ";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.CustomerUpdateInterface', compact("data"));
         }
@@ -385,7 +403,7 @@ class ManageAccountController extends Controller
         } 
         else {
             $data = rider::where('Rider_ID', $id)->get();
-             $message = "Numeric ONLY!";
+             $message = "Identification Card (IC) Number only allow numerical input.";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.RiderInformationInterface', compact("data"));
         }
