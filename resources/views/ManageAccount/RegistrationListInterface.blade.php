@@ -17,14 +17,7 @@
 			<div class="col-sm-8 col-sm-offset-8">
            
 				<h2><b>Rider List</b></h2>
-                <form action="{{ route('ManageAccount.searchR') }}" method="GET" role="search">          
-                    <input type="text" class="form-control mr-2" name="search" placeholder="Search Rider Name" id="term"> <button  type="submit" title="Search projects">Search</button>
-                </form>
-                <br>
-                <a href="{{ route('ManageAccount.selectUserTypeR', 1) }}" class=" mt-1">
-                    <button type="button" title="Refresh page">Refresh</button>
-                    
-                </a>
+                
                 </div>
 		</div>
 	</div>

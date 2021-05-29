@@ -17,9 +17,9 @@
 			<div class="col-sm-8 col-sm-offset-8">
 				<h2><b>Ban User</b></h2>
                 @foreach($data as $row)
-				<form action="{{ route('ManageAccount.ban', $row->Customer_ID) }}" method="get">
+				<form action="{{ route('ManageAccount.ban', $row->Customer_ID) }}" method="post">
 				@csrf
-                
+                @method('PUT')
 				<table>
                         <tr>
                             <td>Ban Reason: </td>

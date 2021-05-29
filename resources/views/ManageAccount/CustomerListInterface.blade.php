@@ -28,6 +28,7 @@
                 </div>
 		</div>
 	</div>
+    <form>
 				@csrf
                 <center>
 				<table style="width:60%" border = 1>
