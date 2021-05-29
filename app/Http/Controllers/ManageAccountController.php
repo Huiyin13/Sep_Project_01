@@ -252,19 +252,9 @@ class ManageAccountController extends Controller
     
     public function search(Request $request)
     {
-        $data = customer::where([
-            ['Customer_Name', '!=', Null],
-            [function ($query) use ($request) {
-                if (($term = $request->term)) {
-                    $query->orWhere('Customer_Name', 'LIKE', '%' . $term . '%')->get();
-                }
-            }]
-        ])
-            ->orderBy('Customer_Name', 'desc')
-            ->paginate(10);
-
-        return view('ManageAccount.CustomerListInterface', compact("data"))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $name = $request->get();
+        $data = DB::select("SECLECT * FROM customers WHERE Customer_Name LIKE '%".$name."%'");
+        return view('ManageAccount.CustomerListInterface', compact("data"));
     }
 
     public function viewProfile($id)
@@ -322,19 +312,20 @@ class ManageAccountController extends Controller
     public function ban(Request $request, $id)
     {
         //
+        
         $data = customer::where('Customer_ID', $id)->get();
-        $data2 = staff::get();
-        $reason = $request->Ban_reason;
+        $data2 = staff::all();
+        $reason = $request->Ban_Reason;
         $validatedPass = $request->Staff_Password;
         foreach($data2 as $data1){
-            $data1 = $data2->Staff_Password;
+            $data3 = $data1->Staff_Password;
         }
-        $verify = password_verify($validatedPass,$data2);
+        $verify = password_verify($validatedPass,$data3);
         if ( $verify) {
         //if($validatedPass == $data1){
             
             
-            DB::select("UPDATE customers set Ban_Reason = '$reason' and Customer_Status = 'BANNED' where Customer_ID = ?",[$id]);
+            DB::select("UPDATE customers set Ban_Reason = '$reason' , Customer_Status = 'BANNED' where Customer_ID = ?",[$id]);
             $data = customer::where('Customer_ID', $id)->get();
             $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
@@ -418,16 +409,15 @@ class ManageAccountController extends Controller
     {
         //
         $data = rider::where('Rider_ID', $id)->get();
-        $data2 = DB::select("SELECT Staff_Password FROM staffs");
+        $data2 = staff::all();
         $reason = $request->Reason;
         $validatedPass = $request->Staff_Password;
-        
-        $verify = password_verify($validatedPass,$data2);
+        foreach($data2 as $data1){
+            $data3 = $data1->Staff_Password;
+        }
+        $verify = password_verify($validatedPass,$data3);
         if ( $verify) {
-        //if($validatedPass == $data1){
-            
-            
-            DB::select("UPDATE riders set Ban_Reason = '$reason', 'Rider_Status = 'Banned' where Rider_ID = ?",[$id]);
+            DB::select("UPDATE riders set Reason = '$reason' , Rider_Status = 'BANNED' where Rider_ID = ?",[$id]);
             $data = rider::where('Rider_ID', $id)->get();
             $message = "Password is successful updated!";
             echo "<script type='text/javascript'>alert('$message');</script>";
