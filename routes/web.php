@@ -81,6 +81,22 @@ Route::get('staff', function () {
     return view('staff');
 });
 
+// Link to main page for each user 
+// Customer 
+Route::get('/ManageAccount/CustomerMainPage', function () {
+    return view('/ManageAccount/CustomerMainPage');
+});
+
+// Rider
+Route::get('/ManageAccount/RiderMainPage', function () {
+    return view('/ManageAccount/RiderMainPage');
+});
+
+// Staff 
+Route::get('/ManageAccount/UserTypeInterface', function () {
+    return view('/ManageAccount/UserTypeInterface');
+});
+
 //Route For Manage Account
 Route::get('test', function () {
     return view('ManageAccount.test');
@@ -100,7 +116,7 @@ Route::get('/ManageAccount/{id}/changePassR', 'ManageAccountController@changePas
 Route::resource('ManageAccount', 'ManageAccountController');
 //Staff
 //-->Customer
-Route::get('/ManageAccount/search', 'ManageAccount@search')->name('ManageAccount.search');//Search 
+Route::get('/ManageAccount/search', 'ManageAccountController@search')->name('ManageAccount.search');//Search 
 Route::get('/ManageAccount/{id}/selectUserType', 'ManageAccountController@selectUserType')->name('ManageAccount.selectUserType');//View List
 Route::get('/ManageAccount/{id}/viewProfile', 'ManageAccountController@viewProfile')->name('ManageAccount.viewProfile');//View Profile
 Route::get('/ManageAccount/{id}/updateIC', 'ManageAccountController@updateIC')->name('ManageAccount.updateIC');//Edit IC
@@ -109,7 +125,7 @@ Route::get('/ManageAccount/{id}/banUser', 'ManageAccountController@banUser')->na
 Route::get('/ManageAccount/{id}/ban', 'ManageAccountController@ban')->name('ManageAccount.ban');//Ban Update 
 //Staff
 //-->Rider
-Route::get('/ManageAccount/searchR', 'ManageAccount@searchR')->name('ManageAccount.searchR');//Search 
+Route::get('/ManageAccount/searchR', 'ManageAccountController@searchR')->name('ManageAccount.searchR');//Search 
 Route::get('/ManageAccount/{id}/selectUserTypeR', 'ManageAccountController@selectUserTypeR')->name('ManageAccount.selectUserTypeR');//View List
 Route::get('/ManageAccount/{id}/viewProfileR', 'ManageAccountController@viewProfileR')->name('ManageAccount.viewProfileR');//View Profile
 Route::get('/ManageAccount/{id}/updateICR', 'ManageAccountController@updateICR')->name('ManageAccount.updateICR');//Edit IC
