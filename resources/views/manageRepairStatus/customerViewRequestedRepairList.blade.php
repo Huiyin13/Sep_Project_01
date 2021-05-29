@@ -1,3 +1,5 @@
+@extends('layouts.custapp')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,3 +55,4 @@ table, th, td {
 
 </body>
 </html>
+@endsection
