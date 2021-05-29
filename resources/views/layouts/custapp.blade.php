@@ -51,25 +51,33 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container" style="background-color: orange">
+    <div id="app" >
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
+            
+            <table style="background-color:orange; width: 100%">
+            <tr>
+            <td> 
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- Changed from Laravel to logo --> 
-                    <img src="images/Logo.png" alt="Dercs Logo" />
+                    <img src="/images/Logo.png" alt="Dercs Logo" />
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+            
+                </td>
+                <td>   </td>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <!-- Changed mr to ml --> 
+                    <td  style="text-align:center">
                     <ul class="navbar-nav ml-auto">
                         <!-- Added center header --> 
                         <center><p style="font-size:30px">REPAIR | SUPPLY | SERVICES</p></center>
                     </ul>
-
+            </td>
+            <td>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -86,7 +94,9 @@
                                             document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
+            </td>
+            </tr>
+            </table>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -96,8 +106,19 @@
                 </div>
             </div>
         </nav>
-
+        
         <main class="py-4">
+        <div class="header2" style="background-color: black">
+				<table style=''>
+				<tr>
+					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
+				</tr>
+				</table>
+			</div>
             @yield('content')
             @include('layouts.footer')
         </main>
