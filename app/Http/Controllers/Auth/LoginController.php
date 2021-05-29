@@ -68,7 +68,7 @@ class LoginController extends Controller
                 'Customer_Email'   => 'required|email',
                 'Customer_Password' => 'required|min:8'
             ]);
-            return view('/customer', compact(['data1']));
+            return view('/ManageAccount/CustomerMainPage', compact(['data1']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }
@@ -94,7 +94,7 @@ class LoginController extends Controller
                 'Rider_Email'   => 'required|email',
                 'Rider_Password' => 'required|min:8'
             ]);
-            return view('/rider', compact(['data1']));
+            return view('/ManageAccount/RiderMainPage', compact(['data1']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }
@@ -120,7 +120,7 @@ class LoginController extends Controller
                 'Staff_Name'   => 'required',
                 'Staff_Password' => 'required|min:8'
             ]);
-            return view('/staff', compact(['data1']));
+            return view('/ManageAccount/UserTypeInterface', compact(['data1']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }
