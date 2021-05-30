@@ -1,4 +1,6 @@
+@extends('layouts.staffapp')
 
+@section('content')
 <!DOCTYPE html> 
 <html>
 <head>
@@ -47,9 +49,13 @@
 						<td>Phone Number: </td>
 						<td>{{ $row->Rider_Phone }}</td>
 					</tr>
-                    @if($row->Rider_Status == "BANNED")
+                    @if($row->Rider_Status == "BANNED"|| $row->Rider_Status == "REJECTED")
+					<tr> 
+						<td>Status: </td>
+						<td>{{ $row->Rider_Status }}</td>
+					</tr>
                     <tr> 
-						<td>Ban Reason: </td>
+						<td>Reason: </td>
 						<td>{{ $row->Reason }}</td>
 					</tr>
 					<!-- Submit button -->
@@ -75,3 +81,4 @@
 	</div>
 </body>
 </html>
+@endsection

@@ -17,7 +17,7 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-			@foreach($data1 as $row)
+			@foreach($data as $row)
 				@if ($row->Rider_Status == "APPROVED")
                 <h2><b>Goodday {{$row->Rider_Name}}</b></h2>
                 @elseif ($row->Rider_Status == "REJECTED")

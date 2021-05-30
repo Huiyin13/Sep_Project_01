@@ -116,8 +116,9 @@ Route::get('/ManageAccount/{id}/changePassR', 'ManageAccountController@changePas
 //Route::resource('ManageAccount', 'ManageAccountController');
 //Staff
 //-->Customer
-Route::get('/ManageAccount/search', 'ManageAccountController@search')->name('ManageAccount.search');//Search 
-Route::get('/ManageAccount/{id}/selectUserType', 'ManageAccountController@selectUserType')->name('ManageAccount.selectUserType');//View List
+Route::get('/ManageAccount/search','ManageAccountController@search');//Search 
+//Route::get('/ManageAccount/search', 'ManageAccountController@search')->name('ManageAccount.search');//Search 
+Route::get('/ManageAccount/selectUserType', 'ManageAccountController@selectUserType');//View List
 Route::get('/ManageAccount/{id}/viewProfile', 'ManageAccountController@viewProfile')->name('ManageAccount.viewProfile');//View Profile
 Route::get('/ManageAccount/{id}/updateIC', 'ManageAccountController@updateIC')->name('ManageAccount.updateIC');//Edit IC
 Route::post('/ManageAccount/{id}/updateICC', 'ManageAccountController@updateICC')->name('ManageAccount.updateICC');//Update IC
@@ -125,8 +126,9 @@ Route::get('/ManageAccount/{id}/banUser', 'ManageAccountController@banUser')->na
 Route::put('/ManageAccount/{id}/ban', 'ManageAccountController@ban')->name('ManageAccount.ban');//Ban Update 
 //Staff
 //-->Rider
-Route::get('/ManageAccount/searchR', 'ManageAccountController@searchR')->name('ManageAccount.searchR');//Search 
-Route::get('/ManageAccount/{id}/selectUserTypeR', 'ManageAccountController@selectUserTypeR')->name('ManageAccount.selectUserTypeR');//View List
+Route::get('/ManageAccount/searchR','ManageAccountController@searchR');//Search 
+//Route::get('/ManageAccount/searchR', 'ManageAccountController@searchR')->name('ManageAccount.searchR');//Search 
+Route::get('/ManageAccount/selectUserTypeR', 'ManageAccountController@selectUserTypeR');//View List
 Route::get('/ManageAccount/{id}/viewProfileR', 'ManageAccountController@viewProfileR')->name('ManageAccount.viewProfileR');//View Profile
 Route::get('/ManageAccount/{id}/updateICR', 'ManageAccountController@updateICR')->name('ManageAccount.updateICR');//Edit IC
 Route::post('/ManageAccount/{id}/updateICRR', 'ManageAccountController@updateICRR')->name('ManageAccount.updateICRR');//Update IC
@@ -134,17 +136,11 @@ Route::get('/ManageAccount/{id}/banUserR', 'ManageAccountController@banUserR')->
 Route::put('/ManageAccount/{id}/banR', 'ManageAccountController@banR')->name('ManageAccount.banR');//Ban Update 
 //Staff
 //-->Register
-Route::get('/ManageAccount/{id}/viewRegister', 'ManageAccountController@viewRegister')->name('ManageAccount.viewRegister');//View List
+Route::get('/ManageAccount/viewRegister', 'ManageAccountController@viewRegister');//View List
 Route::get('/ManageAccount/{id}/selectProfileRR', 'ManageAccountController@selectProfileRR')->name('ManageAccount.selectProfileRR');//View Register Infomation
 Route::get('/ManageAccount/{id}/approve', 'ManageAccountController@approve')->name('ManageAccount.approve');//Approve Registration
 Route::get('/ManageAccount/{id}/reject', 'ManageAccountController@reject')->name('ManageAccount.reject');//Reject Registration
 Route::get('/ManageAccount/{id}/rejectR', 'ManageAccountController@rejectR')->name('ManageAccount.rejectR');//Reject Registration
-
-
-
-
-
-
 
 //Route for Manage PickUP and Delivery
 Route::get('pickupdelivery',function(){
