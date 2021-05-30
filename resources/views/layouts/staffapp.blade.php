@@ -102,7 +102,7 @@
 				<table style=''>
 				<tr>
 					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.index')}}' ">Customer's Request</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.viewRegister', 1) }}' ">Rider Registration</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/viewRegister' ">Rider Registration</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/UserTypeInterface' ">User Type</button></td>
 				</tr>
 				</table>

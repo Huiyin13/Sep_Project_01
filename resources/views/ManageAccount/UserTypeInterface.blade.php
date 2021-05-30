@@ -15,8 +15,8 @@
 				<td style="text-align: center;"><img src="/images/Rider_Logo.png" alt="Rider Logo" style="width: 175px; height: 100px;"></td>
 			</tr>
 			<tr>
-				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectUserType', 1)}}'" style="color: white; text-decoration: none;">CUSTOMER</a></button></td>
-				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectUserTypeR', 1)}}'" style="color: white; text-decoration: none;">RIDER</a></button></td>
+				<td style="text-align: center;"><button onclick="location.href='/ManageAccount/selectUserType'" style="color: white; text-decoration: none;">CUSTOMER</a></button></td>
+				<td style="text-align: center;"><button onclick="location.href='/ManageAccount/selectUserTypeR'" style="color: white; text-decoration: none;">RIDER</a></button></td>
 			</tr>
 		</table>
 	</center>

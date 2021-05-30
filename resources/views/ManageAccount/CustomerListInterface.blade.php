@@ -19,11 +19,11 @@
 			<div class="col-sm-8 col-sm-offset-8">
            
 				<h2><b>Customer List</b></h2>
-                <form action="{{ route('ManageAccount.search') }}" method="GET" role="search">          
+                <form action="/ManageAccount/search" method="GET" role="search">          
                     <input type="text" class="form-control mr-2" name="search" placeholder="Search Customer Name" id="term"> <button  type="submit" title="Search projects">Search</button>
                 </form>
                 <br>
-                <a href="{{ route('ManageAccount.selectUserType', 1) }}" class=" mt-1">
+                <a href="/ManageAccount/selectUserType" class=" mt-1">
                     <button type="button" title="Refresh page">Refresh</button>
                     
                 </a>
