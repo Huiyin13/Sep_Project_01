@@ -1,6 +1,7 @@
 @extends('layouts.custapp')
 
 @section('content')
+
 <!DOCTYPE html> 
 <html>
 <head>
@@ -17,7 +18,7 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-			@foreach($data1 as $row)
+			@foreach($data as $row)
 				@if ($row->Customer_Status != "BANNED")
                 <h2><b>Goodday {{$row->Customer_Name}}</b></h2>
                 @else

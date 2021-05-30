@@ -75,7 +75,7 @@
                         <!-- Authentication Links -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @foreach($data1 as $row)
+                                @foreach($data as $row)
                                     {{ $row->Staff_Name }}
                                 @endforeach
                             </a>
@@ -98,6 +98,16 @@
         </nav>
 
         <main class="py-4">
+        <div class="header2" style="background-color: black">
+				<table style=''>
+				<tr>
+					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.index')}}' ">Customer's Request</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('ManageAccount.viewRegister', 1) }}' ">Rider Registration</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/UserTypeInterface' ">User Type</button></td>
+				</tr>
+				</table>
+                
+			</div>
             @yield('content')
             @include('layouts.footer')
         </main>

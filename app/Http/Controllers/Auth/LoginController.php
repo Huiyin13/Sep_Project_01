@@ -55,20 +55,22 @@ class LoginController extends Controller
     public function customerLogin(Request $request)
     {
         $id = $request->Customer_Email; 
-        $data1 = customer::where('Customer_Email', $id)->get();
+        $data = customer::where('Customer_Email', $id)->get();
         $validatedEmail = $request->Customer_Email;
         $validatedPass = $request->Customer_Password;
-        foreach($data1 as $data2){
+        foreach($data as $data2){
             $data3 = $data2->Customer_Email; 
             $data4 = $data2->Customer_Password; 
         }
+        
         $verify = password_verify($validatedPass,$data4);
         if($validatedEmail == $data3 && $verify){
             $validatedData = $request->validate([
                 'Customer_Email'   => 'required|email',
                 'Customer_Password' => 'required|min:8'
             ]);
-            return view('/ManageAccount/CustomerMainPage', compact(['data1']));
+            
+            return view('/ManageAccount/CustomerMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }
@@ -81,10 +83,10 @@ class LoginController extends Controller
     public function riderLogin(Request $request)
     {
         $id = $request->Rider_Email; 
-        $data1 = rider::where('Rider_Email', $id)->get();
+        $data = rider::where('Rider_Email', $id)->get();
         $validatedEmail = $request->Rider_Email;
         $validatedPass = $request->Rider_Password;
-        foreach($data1 as $data2){
+        foreach($data as $data2){
             $data3 = $data2->Rider_Email; 
             $data4 = $data2->Rider_Password; 
         }
@@ -94,7 +96,7 @@ class LoginController extends Controller
                 'Rider_Email'   => 'required|email',
                 'Rider_Password' => 'required|min:8'
             ]);
-            return view('/ManageAccount/RiderMainPage', compact(['data1']));
+            return view('/ManageAccount/RiderMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }
@@ -107,20 +109,24 @@ class LoginController extends Controller
     public function staffLogin(Request $request)
     {
         $id = $request->Staff_Name; 
-        $data1 = staff::where('Staff_Name', $id)->get();
+        $data = staff::all();
         $validatedName = $request->Staff_Name;
         $validatedPass = $request->Staff_Password;
-        foreach($data1 as $data2){
+        foreach($data as $data2){
             $data3 = $data2->Staff_Name; 
             $data4 = $data2->Staff_Password; 
         }
         $verify = password_verify($validatedPass,$data4);
+
         if($validatedName == $data3 && $verify){
             $validatedData = $request->validate([
                 'Staff_Name'   => 'required',
                 'Staff_Password' => 'required|min:8'
             ]);
-            return view('/ManageAccount/UserTypeInterface', compact(['data1']));
+            session_start();
+            
+            $_SESSION['name'] = $id;  
+            return view('/ManageAccount/UserTypeInterface', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
     }

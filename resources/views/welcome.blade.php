@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<?php	
+	session_start();
+	
+?>
 <!DOCTYPE html> 
 <html>
 <head>

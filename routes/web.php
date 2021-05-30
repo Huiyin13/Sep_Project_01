@@ -140,12 +140,6 @@ Route::get('/ManageAccount/{id}/approve', 'ManageAccountController@approve')->na
 Route::get('/ManageAccount/{id}/reject', 'ManageAccountController@reject')->name('ManageAccount.reject');//Reject Registration
 Route::get('/ManageAccount/{id}/rejectR', 'ManageAccountController@rejectR')->name('ManageAccount.rejectR');//Reject Registration
 
-
-
-
-
-
-
 //Route for Manage PickUP and Delivery
 Route::get('pickupdelivery',function(){
     return view('ManagePickUpDeliver.testuse');

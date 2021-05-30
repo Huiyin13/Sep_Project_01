@@ -1,4 +1,6 @@
+@extends('layouts.staffapp')
 
+@section('content')
 <!DOCTYPE html> 
 <html>
 <head>
@@ -11,13 +13,13 @@
 			<tr>
 				<td style="text-align: center;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJs-9vUlbFLFKrhJpV2NNvKRUuZedoWALEf0dbAiK46nMv_aV8EG6ms4cyZoUXyGxmkcE&usqp=CAU" alt="Customer Logo" style="width: 150px; height: 150px;"></td>
 				<td style="text-align: center;"><img src="/images/Rider_Logo.png" alt="Rider Logo" style="width: 175px; height: 100px;"></td>
-				<td style="text-align: center;"><img src="https://cdn2.iconfinder.com/data/icons/web-solid/32/user-512.png" alt="Rider Logo" style="width: 100px; height: 100px;"></td>
 			</tr>
 			<tr>
-				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectProfileType', $data1->Staff_ID) }}'" style="color: white; text-decoration: none;">CUSTOMER</a></button></td>
-				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectProfileTypeR', $data1->Staff_ID) }}'" style="color: white; text-decoration: none;">RIDER</a></button></td>
+				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectUserType', 1)}}'" style="color: white; text-decoration: none;">CUSTOMER</a></button></td>
+				<td style="text-align: center;"><button onclick="location.href='{{ route('ManageAccount.selectUserTypeR', 1)}}'" style="color: white; text-decoration: none;">RIDER</a></button></td>
 			</tr>
 		</table>
 	</center>
 </body>
 </html>
+@endsection
