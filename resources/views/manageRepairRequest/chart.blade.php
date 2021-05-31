@@ -1,3 +1,6 @@
+@extends('layouts.staffapp')
+@section('content')
+<!DOCTYPE html>
 <x-app-layout>
     <x-slot name="header">
         <h2>Status chart dashboard</h2>
@@ -32,3 +35,5 @@
 
     @endpush
 <x-app-layout>
+</html>
+@endsection

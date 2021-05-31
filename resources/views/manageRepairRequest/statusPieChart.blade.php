@@ -1,3 +1,5 @@
+@extends('layouts.staffapp')
+@section('content')
 <!DOCTYPE html>
 <html>
  <head>
@@ -47,4 +49,5 @@
    
   </div>
  </body>
+ @endsection
 </html>

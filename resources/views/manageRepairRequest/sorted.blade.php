@@ -1,3 +1,8 @@
+@extends('layouts.custapp')
+@section('content')
+<!DOCTYPE html>
+<html>
+
 <title>Customer View Request Detail Draft</title>
 <h2>Customer View Request Detail Draft</h2>
 
@@ -53,3 +58,5 @@
       @endforeach
     </tbody>
 </table>
+</html>
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.custapp')
+@section('content')
+<!DOCTYPE html>
 <h2>Customer Edit Request Draft</h2>
 <title>Customer Edit Request Draft</title>
 <style>
@@ -21,6 +24,8 @@
 </style>
 
 <body>
+@if(session()->get('key'))
+
         <h1>Please fill in the table below:</h1>
         <br>
     <form method="post" action = "{{ route('manageRepairRequest.update', $data->OrderID) }}" >
@@ -28,9 +33,10 @@
         <table border = 0 align ="center">
             <tr>
             <input type="hidden" name="custID" value="{{ $data->Customer_ID}}">
+            <input type="hidden" name="orderstatus" value="{{ $data->Order_Status}}">    
             <input type="hidden" name="reason" value="{{ $data->Reason}}">
             <input type="hidden" name="estimatedCost" value="{{ $data->Estimated_Cost}}">
-            <input type="hidden" name="confirmationStatus" value="Confirmation_Status">
+            <input type="hidden" name="confirmationStatus" value="{{ $data->Confirmation_Status }}">
                 <td>Computer Owner:</td>
                 <td><input type="text" name="compOwner" value="{{ $data->Comp_Owner}}" required></td>
             </tr>
@@ -59,9 +65,11 @@
                 </td>
             </tr>
             <tr>
-                <td><input type="submit"></td>
+                <td><button>submit</button></td>
             </tr>
+@endif
         </table>
     </form>
 </body>
-
+</html>
+@endsection

@@ -115,7 +115,7 @@ class manageRepairRequestController extends Controller
         //
         $data = manageRepairRequestModel::findOrFail($id);    
             $data->Customer_ID= $req->custID;
-            $data->Order_Status= $req->compOwner;
+            $data->Order_Status= $req->orderstatus;
             $data->Comp_Owner= $req->compOwner;
             $data->Comp_Model = $req->compModel;
             $data->Warranty_Date = $req->warrantyDate;
@@ -126,7 +126,9 @@ class manageRepairRequestController extends Controller
             $data->Confirmation_Status = $req->confirmationStatus;
             $data->Send_Status = $req->sendStatus;
             $data->save();
-        return redirect('request');
+            $message = "Request is successful updated.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            return view('manageRepairRequest.editDraft', compact("data"));
     }
 
     /**
@@ -140,7 +142,9 @@ class manageRepairRequestController extends Controller
         //
         $data = manageRepairRequestModel::findOrFail($id); 
         $data->delete();
-        return redirect('request');
+        $message = "Request is successful deleted.";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        return view('manageRepairRequest.viewDraft');
     }
     
 }
