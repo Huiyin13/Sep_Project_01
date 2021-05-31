@@ -75,7 +75,7 @@ class ManageAccountController extends Controller
             customer::where('Customer_ID', $id)->update($validatedData);
             $message = "Profile is successful updated.";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.test');
+            return view('ManageAccount.CustomerProfileInterface', compact("data"));
         } 
         else {
             $data = customer::where('Customer_ID', $id)->get();
@@ -192,7 +192,7 @@ class ManageAccountController extends Controller
             rider::where('Rider_ID', $id)->update($validatedData);
             $message = "Profile is successful updated.";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.test');
+            return view('ManageAccount.RiderProfileInterface', compact("data"));
         } 
         else {
             $data = rider::where('Rider_ID', $id)->get();
@@ -303,7 +303,7 @@ class ManageAccountController extends Controller
             customer::where('Customer_ID', $id)->update($validatedData);
             $message = "Identification Card (IC) Number is successful updated.";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.test');
+            return view('ManageAccount.CustomerInformationInterface', compact("data"));
         } 
         else {
             $data = customer::where('Customer_ID', $id)->get();
@@ -345,7 +345,7 @@ class ManageAccountController extends Controller
             
             DB::select("UPDATE customers set Ban_Reason = '$reason' , Customer_Status = 'BANNED' where Customer_ID = ?",[$id]);
             $data = customer::where('Customer_ID', $id)->get();
-            $message = "Password is successful updated.";
+            $message = "User is banned.";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.CustomerInformationInterface', compact("data"));
         } 
@@ -367,8 +367,8 @@ class ManageAccountController extends Controller
     public function searchR(Request $request)
     {
         $name = $request->search;
-        $data = customer::where('Rider_Name', 'LIKE', '%'. $name .'%')->get();
-        return view('ManageAccount.Rider_NameListInterface', compact("data"));
+        $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->get();
+        return view('ManageAccount.RiderListInterface', compact("data"));
     }
 
     public function viewProfileR($id)
@@ -399,7 +399,7 @@ class ManageAccountController extends Controller
             rider::where('Rider_ID', $id)->update($validatedData);
             $message = "Identification Card (IC) Number is successful updated.";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.test');
+            return view('ManageAccount.RiderInformationInterface', compact("data"));
         } 
         else {
             $data = rider::where('Rider_ID', $id)->get();
@@ -437,7 +437,7 @@ class ManageAccountController extends Controller
         if ( $verify) {
             DB::select("UPDATE riders set Reason = '$reason' , Rider_Status = 'BANNED' where Rider_ID = ?",[$id]);
             $data = rider::where('Rider_ID', $id)->get();
-            $message = "Password is successful updated.";
+            $message = "User is banned.";
             echo "<script type='text/javascript'>alert('$message');</script>";
             return view('ManageAccount.RiderInformationInterface', compact("data"));
         } 

@@ -36,7 +36,7 @@ class PaymentController extends Controller
         $payment -> Payment_Amount = $req -> estimatedCost;
         $payment -> save();
 
-        $updatePayment = DB::select("update requestdetails set Confirmation_Status = 1 where OrderID = '$orderID'");
+        $updatePayment = DB::select("update requestdetails set Order_Status =  'PAID' where OrderID = '$orderID'");
 
         $info = DB::select("select * from payments where OrderID = '$orderID'");
 
@@ -56,7 +56,7 @@ class PaymentController extends Controller
         $payment -> Payment_Amount = $total;
         $payment -> save();
 
-        $updatePayment = DB::select("update requestdetails set Confirmation_Status = 1 where OrderID = '$orderID'");
+        $updatePayment = DB::select("update requestdetails set Order_Status = 'PAID' where OrderID = '$orderID'");
 
         $info = DB::select("select * from payments where OrderID = '$orderID'");
 

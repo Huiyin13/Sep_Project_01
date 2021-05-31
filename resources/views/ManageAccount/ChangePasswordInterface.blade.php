@@ -32,7 +32,7 @@
                         <!-- Customer New Password --> 
                         <tr>
                             <td>New Password: </td>
-                            <td><input type="password" name="Customer_Password"  id="Customer_Password" required></td>
+                            <td><input type="password" name="Customer_Password"  id="Customer_Password" placeholder="Minimum 8 characters" required></td>
                         </tr>
                         <!-- Submit button -->
                         <tr>

@@ -21,7 +21,7 @@
 				<h2><b>Your Profile</b></h2>
 				<form  action = "{{ route('ManageAccount.update', $row->Customer_ID) }}" method="post">
 				@csrf
-				@method('PATCH')
+				
 				<table>
 				
 					<!-- Customer Name --> 

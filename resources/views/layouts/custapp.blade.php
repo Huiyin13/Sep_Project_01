@@ -49,15 +49,24 @@
             width: 100%;
             padding: 10px;
         }
+        .header2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+        }
+
+       .header2 td {
+        text-align: center;
+        }
     </style>
 </head>
 <body>
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
             
-            <table style="background-color:orange; width: 100%">
-            <tr>
-            <td> 
+        <div class="container" style="background-color: orange"> 
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- Changed from Laravel to logo --> 
                     <img src="/images/Logo.png" alt="Dercs Logo" />
@@ -67,8 +76,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             
-                </td>
-                <td>   </td>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <!-- Changed mr to ml --> 
@@ -77,15 +85,17 @@
                         <!-- Added center header --> 
                         <center><p style="font-size:30px">REPAIR | SUPPLY | SERVICES</p></center>
                     </ul>
-            </td>
-            <td>
+            
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @foreach($data as $row)
-                                    {{ $row->Customer_Name }}
+                            @if(session()->get('key'))
+                                {{ session()->get('key') }}  
+                                
+                            
+                                    
                                 
                             </a>
 
@@ -95,9 +105,7 @@
                                             document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-            </td>
-            </tr>
-            </table>
+            
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -110,16 +118,18 @@
         
         <main class="py-4">
         <div class="header2" style="background-color: black">
+        <ul>
 				<table style=''>
 				<tr>
 					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/infoForm' ">Apply for Repair</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.custViewAll', $row->Customer_ID)}}' ">Requested Repair</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.custViewAll',session()->get('key1'))}}' ">Requested Repair</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Delivery Details</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfile', $row->Customer_ID)}}' ">Profile</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfile', session()->get('key1'))}}' ">Profile</button></td>
 				</tr>
 				</table>
-                @endforeach
+            </ul>
+                @endif
 			</div>
 
             @yield('content')

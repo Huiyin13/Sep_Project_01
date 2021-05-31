@@ -1,4 +1,4 @@
-@extends('layouts.custapp')
+@extends('layouts.staffapp')
 
 @section('content')
 <!DOCTYPE html> 

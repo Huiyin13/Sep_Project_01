@@ -48,6 +48,17 @@
             width: 100%;
             padding: 10px;
         }
+        .header2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+        }
+
+       .header2 td {
+        text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +72,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <!-- Changed mr to ml --> 
@@ -75,9 +86,9 @@
                         <!-- Authentication Links -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @foreach($data as $row)
-                                    {{ $row->Staff_Name }}
-                                @endforeach
+                            @if(session()->get('key'))
+                                {{ session()->get('key') }}  
+                            @endif
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -99,6 +110,7 @@
 
         <main class="py-4">
         <div class="header2" style="background-color: black">
+        <ul>
 				<table style=''>
 				<tr>
 					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.index')}}' ">Customer's Request</button></td>
@@ -106,7 +118,7 @@
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/UserTypeInterface' ">User Type</button></td>
 				</tr>
 				</table>
-                
+        <ul>   
 			</div>
             @yield('content')
             @include('layouts.footer')
