@@ -48,6 +48,17 @@
             width: 100%;
             padding: 10px;
         }
+        .header2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+        }
+
+       .header2 td {
+        text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -99,6 +110,7 @@
 
         <main class="py-4">
         <div class="header2" style="background-color: black">
+        <ul>
 				<table style=''>
 				<tr>
 					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.index')}}' ">Customer's Request</button></td>
@@ -106,7 +118,7 @@
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/UserTypeInterface' ">User Type</button></td>
 				</tr>
 				</table>
-                
+        <ul>   
 			</div>
             @yield('content')
             @include('layouts.footer')

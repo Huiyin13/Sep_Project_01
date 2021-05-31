@@ -48,6 +48,20 @@
             width: 100%;
             padding: 10px;
         }
+
+        .header2 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+        }
+
+       .header2 td {
+        text-align: center;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -102,13 +116,17 @@
 
         <main class="py-4">
         <div class="header2" style="background-color: black">
-				<table style=''>
+                <ul>
+                <table >
 				<tr>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Delivery</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Pickup</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfileR', session()->get('key1'))}}' ">Profile</button></td>
-				</tr>
+                
+                </tr>
 				</table>
+                </ul>
+				
                 @endif
 			</div>
             @yield('content')
