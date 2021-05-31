@@ -1,3 +1,7 @@
+@extends('layouts.custapp')
+@section('content')
+<!DOCTYPE html>
+<html>
 <title>Customer View Request Detail Draft</title>
 <h2>Customer View Request Detail Draft</h2>
 
@@ -22,10 +26,7 @@
   }
 </style>
 
-<p>@if(session()->get('success'))
-      {{ session()->get('success') }}  
-<br></p>
-@endif
+@if(session()->get('key'))
 
 <table style="width:100%">
   <thead>
@@ -39,7 +40,7 @@
   </tr>
   </thead>
   <tbody>
-        <button onclick="location.href='{{ route('manageRepairRequest.sort',20001) }}'">Sort</button>
+        <button onclick="location.href='{{ route('manageRepairRequest.sort',session()->get('key1')) }}'">Sort</button>
     @foreach($data as $row)
       <tr>
         <td>{{ $row->Comp_Owner }}</td>
@@ -50,8 +51,9 @@
         <td><button onclick="location.href='{{ route('manageRepairRequest.edit', $row->OrderID) }}'">Edit</button></td>
         <td><button onclick="location.href='{{ route('manageRepairRequest.destroy', $row->OrderID) }}'">Delete</button></td>
       </tr>
-
-
       @endforeach
+      @endif
     </tbody>
 </table>
+</html>
+@endsection
