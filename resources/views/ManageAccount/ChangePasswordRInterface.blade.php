@@ -32,7 +32,7 @@
                         <!-- Rider New Password --> 
                         <tr>
                             <td>New Password: </td>
-                            <td><input type="password" name="Rider_Password"  id="Rider_Password" required></td>
+                            <td><input type="password" name="Rider_Password"  id="Rider_Password" placeholder="Minimum 8 characters" required></td>
                         </tr>
                         <!-- Submit button -->
                         <tr>

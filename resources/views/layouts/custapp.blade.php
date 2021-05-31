@@ -84,8 +84,11 @@
                         <!-- Authentication Links -->
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            @if(session()->get('key'))
+                                {{ session()->get('key') }}  
+                            @endif
                                 @foreach($data as $row)
-                                    {{ $row->Customer_Name }}
+                                    
                                 
                             </a>
 

@@ -61,6 +61,7 @@ class LoginController extends Controller
         foreach($data as $data2){
             $data3 = $data2->Customer_Email; 
             $data4 = $data2->Customer_Password; 
+            $data5 = $data2->Customer_Name; 
         }
         
         $verify = password_verify($validatedPass,$data4);
@@ -69,7 +70,8 @@ class LoginController extends Controller
                 'Customer_Email'   => 'required|email',
                 'Customer_Password' => 'required|min:8'
             ]);
-            
+            session(['key' => $data5]);
+            $value = session('key');
             return view('/ManageAccount/CustomerMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
@@ -89,6 +91,7 @@ class LoginController extends Controller
         foreach($data as $data2){
             $data3 = $data2->Rider_Email; 
             $data4 = $data2->Rider_Password; 
+            $data5 = $data2->Rider_Name; 
         }
         $verify = password_verify($validatedPass,$data4);
         if($validatedEmail == $data3 && $verify){
@@ -96,6 +99,9 @@ class LoginController extends Controller
                 'Rider_Email'   => 'required|email',
                 'Rider_Password' => 'required|min:8'
             ]);
+            session_start();
+            session(['key' => $data5]);
+            $value = session('key');
             return view('/ManageAccount/RiderMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
@@ -114,7 +120,7 @@ class LoginController extends Controller
         $validatedPass = $request->Staff_Password;
         foreach($data as $data2){
             $data3 = $data2->Staff_Name; 
-            $data4 = $data2->Staff_Password; 
+            $data4 = $data2->Staff_Password;
         }
         $verify = password_verify($validatedPass,$data4);
 
@@ -124,8 +130,9 @@ class LoginController extends Controller
                 'Staff_Password' => 'required|min:8'
             ]);
             session_start();
+            session(['key' => $data3]);
+            $value = session('key');
             
-            $_SESSION['name'] = $id;  
             return view('/ManageAccount/UserTypeInterface', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
