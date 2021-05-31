@@ -35,6 +35,7 @@
 					</tr>
 					<!-- Reminder for Rider -->
 					<tr>
+					<td></td>
 						<td style="color:red;font-size: 10px">Contact us, if need to update your IC. </td>
 						
 					</tr>

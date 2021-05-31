@@ -77,8 +77,8 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @if(session()->get('key'))
                                 {{ session()->get('key') }}  
-                            @endif
-                                @foreach($data as $row)
+                            
+                               
                                     
                                 
                             </a>
@@ -106,10 +106,10 @@
 				<tr>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Delivery</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Pickup</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfileR', $row->Rider_ID)}}' ">Profile</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfileR', session()->get('key1'))}}' ">Profile</button></td>
 				</tr>
 				</table>
-                @endforeach
+                @endif
 			</div>
             @yield('content')
             @include('layouts.footer')

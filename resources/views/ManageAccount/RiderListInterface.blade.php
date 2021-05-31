@@ -19,7 +19,7 @@
 			<div class="col-sm-8 col-sm-offset-8">
            
 				<h2><b>Rider List</b></h2>
-                <form action="/ManageAccount/search" method="GET" role="search">          
+                <form action="/ManageAccount/searchR" method="GET" role="search">          
                     <input type="text" class="form-control mr-2" name="search" placeholder="Search Rider Name" id="term"> <button  type="submit" title="Search projects">Search</button>
                 </form>
                 <br>

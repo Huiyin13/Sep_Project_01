@@ -71,6 +71,14 @@
      @elseif ($data->Confirmation_Status == 'CONFIRMED')
      <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
      Back</button>
+     <form action="{{ route('ManagePayment.Payment1')}}" method="post">
+        
+        @csrf
+        <input type="hidden" value="{{ $data->Customer_ID}}" name="customerID">
+        <input type="hidden" value="{{ $data->OrderID}}" name="OrderID">
+                <input type="submit" class="btn btn-warning" value="Payment">
+            
+        </form>
      @else
      <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
      Back</button>

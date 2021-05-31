@@ -62,6 +62,7 @@ class LoginController extends Controller
             $data3 = $data2->Customer_Email; 
             $data4 = $data2->Customer_Password; 
             $data5 = $data2->Customer_Name; 
+            $data6 = $data2->Customer_ID; 
         }
         
         $verify = password_verify($validatedPass,$data4);
@@ -72,6 +73,8 @@ class LoginController extends Controller
             ]);
             session(['key' => $data5]);
             $value = session('key');
+            session(['key1' => $data6]);
+            $value = session('key1');
             return view('/ManageAccount/CustomerMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');
@@ -92,6 +95,7 @@ class LoginController extends Controller
             $data3 = $data2->Rider_Email; 
             $data4 = $data2->Rider_Password; 
             $data5 = $data2->Rider_Name; 
+            $data6 = $data2->Rider_ID;
         }
         $verify = password_verify($validatedPass,$data4);
         if($validatedEmail == $data3 && $verify){
@@ -102,6 +106,8 @@ class LoginController extends Controller
             session_start();
             session(['key' => $data5]);
             $value = session('key');
+            session(['key1' => $data6]);
+            $value = session('key1');
             return view('/ManageAccount/RiderMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');

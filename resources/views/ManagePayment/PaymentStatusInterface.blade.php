@@ -1,3 +1,6 @@
+@extends('layouts.custapp')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +79,7 @@
                 <tr>
                     <td colspan="2">
                     <center>
-                    <a href="/home"><button class="btn btn-warning">Dismiss</button></a>                   
+                    <a href="{{ route('manageRepairStatus.custViewAll', $row->Customer_ID)}}"><button class="btn btn-warning">Dismiss</button></a>                   
                     </center>
                     </td>
                 </tr>
@@ -89,3 +92,4 @@
 </center>
 </body>
 </html>
+@endsection
