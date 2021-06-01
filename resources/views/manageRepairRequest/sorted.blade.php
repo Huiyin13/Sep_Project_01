@@ -2,7 +2,6 @@
 @section('content')
 <!DOCTYPE html>
 <html>
-
 <title>Customer View Request Detail Draft</title>
 <h2>Customer View Request Detail Draft</h2>
 
@@ -27,11 +26,12 @@
   }
 </style>
 
-<p>@if(session()->get('success'))
-      {{ session()->get('success') }}  
-<br></p>
-@endif
-
+@if(session()->get('key'))
+<table border = 0 align ="center">
+            <tr>
+            <td><button onclick="location.href='{{ route('manageRepairRequest.list',session()->get('key1')) }}'">Back</button></td>
+            </tr>
+</table>
 <table style="width:100%">
   <thead>
   <tr>
@@ -44,7 +44,9 @@
   </tr>
   </thead>
   <tbody>
-    @foreach($sorted as $row)
+        
+
+    @foreach($data as $row)
       <tr>
         <td>{{ $row->Comp_Owner }}</td>
         <td>{{ $row->Comp_Model }}</td>
@@ -54,8 +56,8 @@
         <td><button onclick="location.href='{{ route('manageRepairRequest.edit', $row->OrderID) }}'">Edit</button></td>
         <td><button onclick="location.href='{{ route('manageRepairRequest.destroy', $row->OrderID) }}'">Delete</button></td>
       </tr>
-
       @endforeach
+      @endif
     </tbody>
 </table>
 </html>

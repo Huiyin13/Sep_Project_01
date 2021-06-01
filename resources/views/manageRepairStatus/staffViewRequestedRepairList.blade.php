@@ -23,12 +23,18 @@ table, th, td {
   <button class="btn btn-info" type="submit" title="Search projects">Search</button>
 </form>
 <br>
+<table style="width:10%">
+<tr><td>
   <a href="{{ route('manageRepairStatus.index') }}" class=" mt-1">
     <button class="btn btn-danger" type="button" title="Refresh page">Refresh</button>
-    <br>
-  </a>
-
-
+    
+  </a></td>
+  <td>
+  <a href="{{ route('manageRepairRequest.index') }}" class=" mt-1">
+    <button class="btn btn-success" type="button" title="Graph page">Graph</button>
+    
+  </a></td></tr>
+</table>
 <table style="width:100%">
   <thead>
   <tr>

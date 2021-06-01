@@ -11,6 +11,12 @@
         </style>
     </head> 
     <body>
+    <table border = 0 align ="center">
+            <tr>
+            <td><button onclick="location.href='{{ route('manageRepairRequest.list',session()->get('key1')) }}'">
+            View Request Draft</button></td>
+            </tr>
+    </table>
     @if(session()->get('key'))
         <h1>Please fill in the table below:</h1>
         <br>
@@ -19,11 +25,8 @@
         <table border = 0 align ="center">
             <tr>
             <input type="hidden" name="custID" value="{{ session()->get('key1')}}">
-            <input type="hidden" name="reason" value="NULL">
-            <input type="hidden" name="estimatedCost" value="0">
-            <input type="hidden" name="confirmationStatus" value="NULL">
-            <input type="hidden" name="orderstatus" value="NULL">
-
+            <input type="hidden" name="confirmationStatus" value="-">
+            <input type="hidden" name="orderstatus" value="-">
                 <td>Computer Owner:</td>
                 <td><input type="text" name="compOwner" placeholder="Name" required></td>
             </tr>
@@ -52,12 +55,9 @@
                 </td>
             </tr>
             <tr>
-            <td><button>Submit</button</td>
+            <td><button >Submit</button</td>
             </tr>
-            <tr>
-            <td><button onclick="location.href='{{ route('manageRepairRequest.list',session()->get('key1')) }}'">
-            View Request Draft</button></td>
-            </tr>
+            
         </table>
         </form>
     </body>

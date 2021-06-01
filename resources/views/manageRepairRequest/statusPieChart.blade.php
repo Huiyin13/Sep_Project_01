@@ -2,6 +2,7 @@
 @section('content')
 <!DOCTYPE html>
 <html>
+@if(session()->get('key'))
  <head>
   <title>Staff View Confirmation Status Pie Chart</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -34,7 +35,7 @@
  <body>
   <br />
   <div class="container">
-    <button onclick="location.href='{{ route('manageRepairRequest.list',20001) }}'">Back</button>
+    <button onclick="location.href='{{ route('manageRepairStatus.index', session()->get('key')) }}'">Back</button>
     <h3 align="center">Staff View Confirmation Status Pie Chart</h3><br />
    <div class="panel panel-default">
     <div class="panel-heading">
@@ -49,5 +50,6 @@
    
   </div>
  </body>
+ @endif
  @endsection
 </html>
