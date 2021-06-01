@@ -51,7 +51,13 @@ class manageRepairRequestController extends Controller
             $detail->Confirmation_Status = $req->confirmationStatus;
             $detail->Send_Status = $req->sendStatus;
             $detail->save();
-    
+
+            $message = "Request is successful created.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+
+            //$data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+            //return view('manageRepairRequest.viewDraft', compact("data"));
+            return view('manageRepairRequest.informationForm');
     }
 
     /**
@@ -79,15 +85,15 @@ class manageRepairRequestController extends Controller
     //VIEW draft
     public function list($id)
     {
-        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
         return view('manageRepairRequest.viewDraft', compact("data"));
     }
 
     public function sort($id)
     {
-        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
         $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' ORDER BY Warranty_Date DESC");
-        return view('manageRepairRequest.sorted', compact("sorted"));
+        return view('manageRepairRequest.sorted', compact("sorted","data"));
     }
 
     /**
@@ -140,11 +146,12 @@ class manageRepairRequestController extends Controller
     public function destroy($id)
     {
         //
-        $data = manageRepairRequestModel::findOrFail($id); 
-        $data->delete();
+        $data1 = manageRepairRequestModel::findOrFail($id); 
+        $data1->delete();
         $message = "Request is successful deleted.";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        return view('manageRepairRequest.viewDraft');
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        return view('manageRepairRequest.viewDraft', compact("data"));
     }
     
 }

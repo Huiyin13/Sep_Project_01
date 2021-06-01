@@ -24,13 +24,21 @@
 </style>
 
 <body>
+
 @if(session()->get('key'))
 
-        <h1>Please fill in the table below:</h1>
+        <h2>Please fill in the table below:</h2>
         <br>
+        <table border = 0 align ="center">
+            <tr>
+            <td><button onclick="location.href='{{ route('manageRepairRequest.list',session()->get('key1')) }}'"> back</button></td>
+            </tr>
+        </table>
+        
     <form method="post" action = "{{ route('manageRepairRequest.update', $data->OrderID) }}" >
         @csrf 
         <table border = 0 align ="center">
+        
             <tr>
             <input type="hidden" name="custID" value="{{ $data->Customer_ID}}">
             <input type="hidden" name="orderstatus" value="{{ $data->Order_Status}}">    
@@ -67,6 +75,7 @@
             <tr>
                 <td><button>submit</button></td>
             </tr>
+            
 @endif
         </table>
     </form>

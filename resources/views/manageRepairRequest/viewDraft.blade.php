@@ -27,7 +27,11 @@
 </style>
 
 @if(session()->get('key'))
-
+<table border = 0 align ="center">
+            <tr>
+            <td><button onclick="location.href='{{ route('manageRepairRequest.sort',session()->get('key1')) }}'">Sort</button></td>
+            </tr>
+</table>
 <table style="width:100%">
   <thead>
   <tr>
@@ -40,7 +44,8 @@
   </tr>
   </thead>
   <tbody>
-        <button onclick="location.href='{{ route('manageRepairRequest.sort',session()->get('key1')) }}'">Sort</button>
+        
+
     @foreach($data as $row)
       <tr>
         <td>{{ $row->Comp_Owner }}</td>
