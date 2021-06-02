@@ -22,7 +22,7 @@
   <table>
     <tr>
         <td>Customer Name</td>
-        <td><input type="text" name="Customer_ID" value="{{ $data->Customer_ID}}" readonly="true"></td>
+        <td><input type="text" name="Customer_ID" value="{{ $data->Customer_Name}}" readonly="true"></td>
     </tr>
     <tr>
         <td>Date</td>

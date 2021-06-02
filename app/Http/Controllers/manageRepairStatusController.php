@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\manageRepairStatusModel;
+use Illuminate\Support\Facades\DB;
 
 class manageRepairStatusController extends Controller
 {
@@ -28,7 +29,11 @@ class manageRepairStatusController extends Controller
 
         return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))
             ->with('i', (request()->input('page', 1) - 1) * 5);*/
-        $data = manageRepairStatusModel::where('Send_Status', "SUBMIT")->get();
+            $data = DB::table('requestdetails')
+            ->join('customers', 'requestdetails.Customer_ID', '=', 'customers.Customer_ID')
+            ->where('requestdetails.Send_Status', "SUBMIT")
+            ->paginate(3);
+        //$data = manageRepairStatusModel::where('Send_Status', "SUBMIT")->get();
         return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
     }
 
@@ -80,7 +85,11 @@ class manageRepairStatusController extends Controller
     public function edit($id)
     {
         //
-        $data = manageRepairStatusModel::findOrFail($id);
+        $data = DB::table('requestdetails')
+            ->join('customers', 'requestdetails.Customer_ID', '=', 'customers.Customer_ID')
+            ->where('OrderID', $id)
+            ->first();
+        //$data = manageRepairStatusModel::findOrFail($id);
         return view('manageRepairStatus.staffUpdateRepairStatus', compact("data"));
     }
     /**
@@ -111,15 +120,14 @@ class manageRepairStatusController extends Controller
     public function destroy($id)
     {
         //
-        $data = manageRepairStatusModel::findOrFail($id);
+        $data = manageRepairStatusModel::find($id);
         $data->delete();
-
         return redirect('/manageRepairStatus')->with('success', 'Repair Record is Deleted');
     }
 
     public function custViewAll($id)
     {
-        $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Send_Status', "SUBMIT")->get();
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Send_Status', "SUBMIT")->paginate(3);
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 

@@ -25,8 +25,8 @@
         <table border = 0 align ="center">
             <tr>
             <input type="hidden" name="custID" value="{{ session()->get('key1')}}">
-            <input type="hidden" name="confirmationStatus" value="-">
-            <input type="hidden" name="orderstatus" value="-">
+            <input type="hidden" name="confirmationStatus" value="PENDING">
+            <input type="hidden" name="orderstatus" value="PENDING">
                 <td>Computer Owner:</td>
                 <td><input type="text" name="compOwner" placeholder="Name" required></td>
             </tr>

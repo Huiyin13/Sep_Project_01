@@ -21,10 +21,6 @@
 @method('PUT')
   <table>
     <tr>
-        <td>Customer Name</td>
-        <td><input type="text" name="Customer_ID" value="{{ $data->Customer_ID}}" readonly="true"></td>
-    </tr>
-    <tr>
         <td>Date</td>
         <td><input type="text" name="created_at" value="{{ $data->created_at}}" readonly="true"></td>
     </tr>
@@ -66,10 +62,10 @@
      CONFIRM</button>
     <button onclick="location.href='{{ route('manageRepairStatus.custCancel', ['id'=>$data->OrderID,'idtwo'=>$data->Customer_ID])}}'">
      CANCEL</button>
-     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', session()->get('key1'))}}'">
      Back</button>
      @elseif ($data->Confirmation_Status == 'CONFIRMED')
-     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', session()->get('key1'))}}'">
      Back</button>
      <form action="{{ route('ManagePayment.Payment1')}}" method="post">
         
@@ -80,7 +76,7 @@
             
         </form>
      @else
-     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', 20001)}}'">
+     <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', session()->get('key1'))}}'">
      Back</button>
      @endif
 </div>
