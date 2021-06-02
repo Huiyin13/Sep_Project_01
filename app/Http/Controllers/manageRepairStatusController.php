@@ -72,7 +72,7 @@ class manageRepairStatusController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $data = manageRepairStatusModel::where('OrderID', 'like', '%' . $search. '%')->get();
+        $data = manageRepairStatusModel::where('OrderID', 'like', '%' . $search. '%')->paginate(5);
         return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"));
     }
 
