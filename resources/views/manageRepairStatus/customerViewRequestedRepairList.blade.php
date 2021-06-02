@@ -22,7 +22,7 @@ table, th, td {
 <div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-          <table style="width:100%">
+          <table style="width:300%">
             <thead>
             <tr>
             
@@ -31,7 +31,7 @@ table, th, td {
               <th>Estimated Cost</th>
               <th>Customer Confirmation Status</th>
               <th>Repair Status</th>
-              <th>Action</th>
+              <th style="width:70%">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -44,18 +44,14 @@ table, th, td {
                   <td>{{ $row->Confirmation_Status }}</td>
                   <td>{{ $row->Order_Status }}</td>
                   
-                  <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
-                  <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.custEdit', $row->OrderID) }}'">CONFIRM/CANCEL REPAIR</button>
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit">Delete</button></td>
-                  </form>
+                  
+                  <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.custEdit', $row->OrderID) }}'">CONFIRM/CANCEL REPAIR</button></td>
 
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            
+            {{ $data->links() }}
           </table>
 </div>
 		</div>

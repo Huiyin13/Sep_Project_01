@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\charts\StatusChart::class,
         ]);
+
+        Paginator::useBootstrap();
     }
 }

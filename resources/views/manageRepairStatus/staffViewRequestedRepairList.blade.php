@@ -52,23 +52,24 @@ table, th, td {
       <tr>
         
         <td>{{ $row->OrderID }}</td>
-        <td>{{ $row->Customer_ID }}</td>
+        <td>{{ $row->Customer_Name }}</td>
         <td>{{ $row->created_at }}</td>
         <td>{{ $row->Confirmation_Status }}</td>
         <td>{{ $row->Order_Status }}</td>
         
-        <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
+        
         <td><button type="button" onclick="location.href='{{ route('manageRepairStatus.edit', $row->OrderID) }}'">View or Update</button>
+        <form action="{{ route('manageRepairStatus.destroy', $row->OrderID)}}" method="post">
         @csrf
         @method('DELETE')
-        <button type="submit">Delete</button></td>
-        </form>
+        <button type="submit">Delete</button></form></td>
+        
 
       </tr>
       @endforeach
     </tbody>
   </table>
-  
+  {{ $data->links() }}
 </table>
 
 </body>
