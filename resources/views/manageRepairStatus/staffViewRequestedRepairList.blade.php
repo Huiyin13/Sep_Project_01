@@ -20,18 +20,18 @@ table, th, td {
 
 <form action="{{ route('manageRepairStatus.search') }}" method="GET" role="search">          
   <input type="text" class="form-control mr-2" name="search" placeholder="Search Order ID" id="term">
-  <button class="btn btn-info" type="submit" title="Search projects">Search</button>
+  <button type="submit" title="Search projects">Search</button>
 </form>
 <br>
 <table style="width:10%">
 <tr><td>
   <a href="{{ route('manageRepairStatus.index') }}" class=" mt-1">
-    <button class="btn btn-danger" type="button" title="Refresh page">Refresh</button>
+    <button type="button" title="Refresh page">Refresh</button>
     
   </a></td>
   <td>
   <a href="{{ route('manageRepairRequest.index') }}" class=" mt-1">
-    <button class="btn btn-success" type="button" title="Graph page">Graph</button>
+    <button type="button" title="Graph page">Graph</button>
     
   </a></td></tr>
 </table>
