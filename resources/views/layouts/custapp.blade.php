@@ -123,8 +123,8 @@
 				<tr>
 					<td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/ManageAccount/CustomerMainPage' ">Home</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='/infoForm' ">Apply for Repair</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{ route('manageRepairStatus.custViewAll',session()->get('key1'))}}' ">Requested Repair</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Delivery Details</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('manageRepairStatus.custViewAll',session()->get('key1'))}}' ">Requested Repair</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManagePickUpDeliver.cuslist',session()->get('key1'))}}' ">Delivery Details</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfile', session()->get('key1'))}}' ">Profile</button></td>
 				</tr>
 				</table>

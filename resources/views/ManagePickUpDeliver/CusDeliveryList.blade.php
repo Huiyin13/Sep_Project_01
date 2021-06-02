@@ -1,3 +1,6 @@
+@extends('layouts.custapp')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +41,8 @@ table, th, td {
     </tbody>
   </table>
   
-</table>
+  <button onclick="location.href='{{ route('ManagePickUpDeliver.custDeliverView',session()->get('key1')) }}'">View Delivery</button>
 
 </body>
 </html>
+@endsection

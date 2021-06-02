@@ -1,3 +1,5 @@
+@extends('layouts.custapp')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +36,8 @@
                 <td>Status</td>
                 <td><{{ $data->Status}}></td></tr>
         </table>        
-        <input type="submit" value="Update">
 
-        
     </div>
 </body>
 </html>
+@endsection

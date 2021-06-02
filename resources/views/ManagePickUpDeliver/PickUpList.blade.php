@@ -1,3 +1,5 @@
+@extends('layouts.riderapp')
+@section('content')
 <!DOCTYPE html>
 <title>Rider View PickUp</title>
 <style>
@@ -55,3 +57,4 @@
 
 </body>
 </html>
+@endsection

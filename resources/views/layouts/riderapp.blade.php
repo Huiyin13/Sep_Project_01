@@ -119,8 +119,8 @@
                 <ul>
                 <table >
 				<tr>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Delivery</button></td>
-                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='' ">Pending Pickup</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManagePickUpDeliver.riderDv', session()->get('key1'))}}' ">Pending Delivery</button></td>
+                    <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManagePickUpDeliver.riderPk', session()->get('key1'))}}' ">Pending Pickup</button></td>
                     <td><button type="button" style="background-color: grey; border: none; color: white; padding: 5px 10px" onclick="location.href='{{route('ManageAccount.selectProfileR', session()->get('key1'))}}' ">Profile</button></td>
                 
                 </tr>

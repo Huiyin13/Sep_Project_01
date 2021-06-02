@@ -1,3 +1,5 @@
+@extends('layouts.custapp')
+@section('content')
 <!DOCTYPE html>
 <title>Customer View Deliver</title>
 <style>
@@ -50,8 +52,8 @@
       @endforeach
     </body>
   </table>
-  
-</table>
 
 </body>
 </html>
+@endsection
+

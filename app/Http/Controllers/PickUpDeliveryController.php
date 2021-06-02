@@ -18,7 +18,7 @@ class PickUpDeliveryController extends Controller
     //customer view delivery list
     public function custDeliverView($id)
     {
-        $data = PickUpDeliveryModel::where('Customer_ID', $id)->where('Status',"SuccessPick")->get();
+        $data = PickUpDeliveryModel::where('Customer_ID', $id)->where('Status',"SuccessDeliver")->get();
         return view('ManagePickUpDeliver.CusDeliverList', compact("data"));
     }
     //customer view pickup detail
@@ -63,7 +63,10 @@ class PickUpDeliveryController extends Controller
         $data->PickUp_Add = $req->PickUp_Add;
         $data->Status = $req->Status;
         $data->save();
-        return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
+        $message = "Update is successful";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+
+        return view('ManagePickUpDeliver.CusDeliveryList');
     }
 
     public function update(Request $req, $id){

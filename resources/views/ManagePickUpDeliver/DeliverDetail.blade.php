@@ -1,3 +1,5 @@
+@extends('layouts.riderapp')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,33 +23,33 @@
             <tr>
                 <td>Name</td>
                 <td><input type="text" name="Customer_ID" value="{{ $data->Customer_ID}}" readonly="true"></td>
-                <td></td></tr>
+                
             <tr>
             
             @csrf
                 <td>Deliver Date</td>
                 <td><input type="date" value="{{ $data->Deliver_Date}}" name="Deliver_Date" id="Deliver_Date"></td>
-                <td><input type="submit" value="Edit"></td></tr>
+                
             <tr>
            
                 <td>Deliver Time</td>
                 <td><input type="time" value="{{ $data->Deliver_Time}}" name="Deliver_Time" id="Deliver_Time"></td>
-                <td><input type="submit" value="Edit"></td></tr>
+                
             <tr>
                 <td>Deliver Address</td>
                 <td><input type="text" name="Deliver_Add" id="Deliver_Add" value="{{ $data->PickUp_Add}}" readonly="true"></td>
-                <td></td></tr>
+                
             <tr>    
                 <td>Status</td>
                 <td><select name="Status" id="Status">
-                    <option value="Deliver">Pending</option>
+                    <option value="SuccessPick">Pending</option>
                     <option value="SuccessDeliver">Success to Deliver</option>
-                    <option value="Deliver">Fail to Deliver</option></select></td>
-                    <td></td></tr>
+                    <option value="SuccessPick">Fail to Deliver</option></select></td>
+                
         </table>        
         <input type="submit" value="Update">
     </form>
     </div>
 </body>
 </html>
-  
+@endsection

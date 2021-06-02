@@ -1,3 +1,5 @@
+@extends('layouts.riderapp')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,3 +46,4 @@ table, th, td {
 
 </body>
 </html>
+@endsection

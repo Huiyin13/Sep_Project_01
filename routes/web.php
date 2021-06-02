@@ -166,7 +166,7 @@ Route::get('/custDeliverView/{id}','PickUpDeliveryController@custDeliverView')->
 Route::get('/cusViewDelivery/{id}/cusViewDetail','PickUpDeliveryController@cusViewDetail')->name('ManagePickUpDeliver.cusViewDetail');
 Route::get('/CusDetail/{id}/CusDeliverDetail','PickUpDeliveryController@CusDeliverDetail')->name('ManagePickUpDeliver.CusDeliverDetail');
 
-Route::post('/CusViewDetail/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.add');
+Route::post('/cusViewDelivery/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.cusAddPickUp');
 Route::post('add','PickUpDeliveryController@cusAddPickUp');
 
 //Route for Manage Payment
