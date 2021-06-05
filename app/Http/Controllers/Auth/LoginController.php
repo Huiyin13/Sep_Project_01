@@ -63,6 +63,8 @@ class LoginController extends Controller
             $data4 = $data2->Customer_Password; 
             $data5 = $data2->Customer_Name; 
             $data6 = $data2->Customer_ID; 
+            $data7 = $data2->Customer_Status;
+            $data8 = $data2->Ban_Reason;
         }
         
         $verify = password_verify($validatedPass,$data4);
@@ -75,6 +77,10 @@ class LoginController extends Controller
             $value = session('key');
             session(['key1' => $data6]);
             $value = session('key1');
+            session(['key2' => $data7]);
+            $value = session('key2');
+            session(['key3' => $data8]);
+            $value = session('key3');
             return view('/ManageAccount/CustomerMainPage', compact(['data']));
         }
         return redirect()->back()->with('message', 'The email and password does not match.');

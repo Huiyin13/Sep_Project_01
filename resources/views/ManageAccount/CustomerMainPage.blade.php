@@ -18,14 +18,15 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
-			@foreach($data as $row)
-				@if ($row->Customer_Status != "BANNED")
-                <h2><b>Goodday {{$row->Customer_Name}}</b></h2>
+			@if(session()->get('key')) 
+			
+				@if (session()->get('key2')   != "BANNED")
+                <h2><b>Goodday {{ session()->get('key') }}</b></h2>
                 @else
-                <h5><b> {{$row->Customer_Name}}, You are BANNED! Please contact to our service center for more information. Here is the reason you are banned.</b></h5>
-                <p>{{$row->Reason}}</p>
+                <h5><b> {{ session()->get('key') }}, You are BANNED! Please contact to our service center for more information. Here is the reason you are banned.</b></h5>
+                <p>{{ session()->get('key3') }}</p>
                 @endif
-            @endforeach
+				@endif
 			</div>
 		</div>
 	</div>
