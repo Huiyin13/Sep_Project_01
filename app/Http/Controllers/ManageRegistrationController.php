@@ -58,6 +58,7 @@ class ManageRegistrationController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
+    // Customer registration 
     protected function custreg(Request $request)
     {
         $data = new customer;
@@ -81,12 +82,15 @@ class ManageRegistrationController extends Controller
                     $var->save();
                     return redirect()->intended('auth/CustLogin');  
                 }
+                // Identification Card number error message 
                 else{
-                    return redirect()->back()->with('message', 'Identification Card (IC) Number only allow numerical input.');
+                    return redirect()->back()->with('message', 'Identification Card (IC) Number only allow 12 numerical input and no dash required.');
                 }
             }
+            // Password length error message 
             return redirect()->back()->with('message', 'Minimum password length of eight (8) is required.');
         }
+        // Password error message 
         else{
             return redirect()->back()->with('message', 'The password confirmation does not match.');
         }
@@ -95,9 +99,10 @@ class ManageRegistrationController extends Controller
 
     /**
      * @param Request $request
-     *
+     * 
      * @return \Illuminate\Http\RedirectResponse
      */
+    // Rider registration 
     protected function riderreg(Request $request)
     {
         $data = new rider;
@@ -136,12 +141,15 @@ class ManageRegistrationController extends Controller
                     $var->save();
                     return redirect()->intended('auth/RiderLogin');  
                 } 
+                // Identification Card number error message 
                 else{
-                    return redirect()->back()->with('message', 'Identification Card (IC) Number only allow numerical input.');
+                    return redirect()->back()->with('message', 'Identification Card (IC) Number only allow 12 numerical input and no dash required.');
                 }
             }
+            // Password length error message
             return redirect()->back()->with('message', 'Minimum password length of eight (8) is required.');
         }
+        // Password error message
         else{
             return redirect()->back()->with('message', 'The password confirmation does not match.');
         }

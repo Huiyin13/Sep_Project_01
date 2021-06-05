@@ -17,7 +17,7 @@ class StaffSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // No registration for staff, seed staff details here
         DB::table('staffs')->insert([
             [
                 'Staff_Name'=>'Staff 1',
