@@ -17,6 +17,7 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-8">
+				<!-- Display error message -->
 				@if(session()->has('message'))
     				<div class="alert alert-warning">
         				{{ session()->get('message') }}
