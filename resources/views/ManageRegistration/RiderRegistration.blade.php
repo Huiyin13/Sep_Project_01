@@ -12,6 +12,7 @@
 	<div class="container customer-register">
 		<div class="row">
 			<div class="col-sm col-sm-offset">
+				<!-- Display error message -->
 				@if(session()->has('message'))
     				<div class="alert alert-warning">
         				{{ session()->get('message') }}
@@ -82,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-	
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 	<script>
         // Preview Rider IC Photo script 
