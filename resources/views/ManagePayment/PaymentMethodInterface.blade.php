@@ -1,5 +1,3 @@
-@extends('layouts.custapp')
-@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,10 +92,7 @@
                     </form>
                     </td>
                 </tr>
-
-                <tr>
-                    
-                    <td>
+                <td>
                         <div id="paypal-button-container"></div>
                         <script>
                             paypal.Buttons({
@@ -141,11 +136,9 @@
                    </tr>             
             </table>
             @endforeach
-            
-            
+
+
     </div>
 </center>
 </body>
 </html>
-
-@endsection
