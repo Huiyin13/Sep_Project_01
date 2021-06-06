@@ -64,16 +64,16 @@
                 
                 <tr>
                     <th>Order ID</th>
-                    <td><input type="text" name="OrderID" value="{{$row->Customer_ID}}" class="noborder"></td>
+                    <td><input type="text" name="OrderID" value="{{$row->Customer_ID}}" class="noborder" readonly></td>
                 </tr>
                 <tr>
                     <th>Total Price</th>
-                    <td><input type="text" name="total" value="{{$row->Payment_Amount}}" class="noborder"></td>
+                    <td><input type="text" name="total" value="{{$row->Payment_Amount}}" class="noborder" readonly></td>
                 </tr>
 
                 <tr>
                     <th>Payment Method</th>
-                    <td><input type="text" name="paymentType" value="{{$row->Payment_Type}}" class="noborder"></td>
+                    <td><input type="text" name="paymentType" value="{{$row->Payment_Type}}" class="noborder" readonly></td>
                 </tr>
 
                 <tr>

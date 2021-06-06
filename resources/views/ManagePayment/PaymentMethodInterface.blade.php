@@ -65,15 +65,15 @@
             
                 <tr class="solid">
                     <th class="solid">Customer Name :</th>
-                    <td><input type="text" value="{{$row->Customer_Name}}" name="customerName" class="noborder" readonly size="30"></td>
+                    <td><input type="text" value="{{$row->Customer_Name}}" name="customerName" class="noborder" readonly size="50"></td>
                 </tr>
                 <tr class="solid">
                     <th class="solid">Customer Address :</th>
-                    <td><input type="text" value="{{$row->Customer_Address}}" name="customerAddress" class="noborder" readonly size="30"></td>
+                    <td><input type="text" value="{{$row->Customer_Address}}" name="customerAddress" class="noborder" readonly size="50"></td>
                 </tr>
                 <tr class="solid">
                     <th class="solid">Total Price :</th>
-                    <td><input type="text" value="{{$row->Estimated_Cost}}" name="estimatedCost" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row->Estimated_Cost}}" name="estimatedCost" class="noborder" readonly size="50"></td>
                 </tr>
             
                 <tr>
@@ -92,7 +92,7 @@
                     </form>
                     </td>
                 </tr>
-                <td>
+
                         <div id="paypal-button-container"></div>
                         <script>
                             paypal.Buttons({
@@ -132,6 +132,7 @@
                             }).render('#paypal-button-container');
                             //This function displays Smart Payment Buttons on your web page.
                         </script>
+                        </form>
                     </td>  
                    </tr>             
             </table>

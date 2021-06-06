@@ -21,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Added style --> 
+    
     <style>
         button{
 			background-color: black; 
@@ -59,6 +60,13 @@
 
        .header2 td {
         text-align: center;
+        }
+
+        .footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
         }
     </style>
 </head>
