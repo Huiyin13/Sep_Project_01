@@ -31,7 +31,7 @@
                         <!-- Submit button -->
                         <tr>
                             <td></td>
-                            <td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">REJECT</button></td>
+                            <td><button type="submit" style="background-color: black; border: none; color: white; padding: 5px 10px">OK</button></td>
                             <td></td>
                             <td><button type="button" onclick="location.href='{{ route('ManageAccount.selectProfileRR', $row->Rider_ID) }}'" style="background-color: red; border: none; color: white; padding: 5px 10px">CANCEL</button></td>
                         </tr>

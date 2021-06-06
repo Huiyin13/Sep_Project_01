@@ -67,6 +67,7 @@
      @elseif ($data->Confirmation_Status == 'CONFIRMED')
      <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', session()->get('key1'))}}'">
      Back</button>
+     @if($data->Order_Status == 'COMPLETED')
      <form action="{{ route('ManagePayment.Payment1')}}" method="post">
         
         @csrf
@@ -75,6 +76,7 @@
                 <input type="submit" class="btn btn-warning" value="Payment">
             
         </form>
+        @endif
      @else
      <button onclick="location.href='{{ route('manageRepairStatus.custViewAll', session()->get('key1'))}}'">
      Back</button>
