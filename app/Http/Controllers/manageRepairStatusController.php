@@ -142,7 +142,7 @@ class manageRepairStatusController extends Controller
     {
         //
         manageRepairStatusModel::where('OrderID', $id)->update(array('Confirmation_Status' => 'CONFIRMED'));
-        $data = manageRepairStatusModel::where('Customer_ID', $idtwo)->get();
+        $data = manageRepairStatusModel::where('Customer_ID', $idtwo)->paginate(3);
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 
@@ -150,7 +150,7 @@ class manageRepairStatusController extends Controller
     {
         //
         manageRepairStatusModel::where('OrderID', $id)->update(array('Confirmation_Status' => 'CANCELLED'));
-        $data = manageRepairStatusModel::where('Customer_ID', $idtwo)->get();
+        $data = manageRepairStatusModel::where('Customer_ID', $idtwo)->paginate(3);
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 }
