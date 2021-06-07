@@ -92,7 +92,8 @@
                     </form>
                     </td>
                 </tr>
-
+                <tr>
+                    <td>
                         <div id="paypal-button-container"></div>
                         <script>
                             paypal.Buttons({
