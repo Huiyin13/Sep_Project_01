@@ -309,7 +309,7 @@ class ManageAccountController extends Controller
             $data = customer::where('Customer_ID', $id)->get();
              $message = "Identification Card (IC) Number only allow numerical input. ";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.CustomerUpdateInterface', compact("data"));
+            return view('ManageAccount.CustomerInformationInterface', compact("data"));
         }
     }
 
