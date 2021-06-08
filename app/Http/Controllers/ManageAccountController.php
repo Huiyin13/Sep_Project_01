@@ -367,7 +367,7 @@ class ManageAccountController extends Controller
     public function searchR(Request $request)
     {
         $name = $request->search;
-        $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->get();
+        $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->where('Rider_Status', "BANNED")->orWhere('Rider_Status', "APPROVED")->orWhere('Rider_Status', "REJECTED")->get();
         return view('ManageAccount.RiderListInterface', compact("data"));
     }
 
