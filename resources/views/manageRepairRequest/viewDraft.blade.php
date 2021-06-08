@@ -31,6 +31,10 @@
             <tr>
             <td><button onclick="location.href='{{ route('manageRepairRequest.sort',session()->get('key1')) }}'">Sort</button></td>
             </tr>
+            <p>@if(session()->get('msj'))
+            {{ session()->get('msj') }}  
+            <br></p>
+            @endif
 </table>
 <table style="width:100%">
   <thead>

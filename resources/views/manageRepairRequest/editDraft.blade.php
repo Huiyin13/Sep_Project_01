@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td>Problem's detail:</td>
-                <td><input type="text" name="problemsReported" value="{{ $data->Problems_Reported}}" required></td>
+                <td><textarea  name="problemsReported" rows="4" columns="50" required>{{ $data->Problems_Reported}}</textarea></td>
             </tr>
             <tr>
                 <td>Do you want to submit this form?</td>
