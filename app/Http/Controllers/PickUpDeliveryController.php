@@ -66,7 +66,7 @@ class PickUpDeliveryController extends Controller
         $message = "Update is successful";
             echo "<script type='text/javascript'>alert('$message');</script>";
 
-        return view('ManagePickUpDeliver.CusDeliveryList');
+        return view('ManageAccount.CustomerMainPage');
     }
 
     public function update(Request $req, $id){
