@@ -21,7 +21,7 @@
 <form method="POST" action="{{ route('ManagePickUpDeliver.riderUpdateDeliver', $data->PickUpDeliver_ID) }}">
         <table>
             <tr>
-                <td>Name</td>
+                <td>Customer ID</td>
                 <td><input type="text" name="Customer_ID" value="{{ $data->Customer_ID}}" readonly="true"></td>
                 
             <tr>

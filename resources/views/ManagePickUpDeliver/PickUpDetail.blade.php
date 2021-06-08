@@ -22,7 +22,7 @@
     @csrf
         <table>
             <tr>
-                <td>Name</td>
+                <td>Customer ID</td>
                 <td><input type="text" name="Customer_ID" value="{{ $data->Customer_ID}}" readonly="true"></td></tr>
             <tr>
                 <td>PickUp Date</td>

@@ -24,7 +24,7 @@ table, th, td {
   <thead>
   <tr>
     <th>Order ID</th> 
-    <th>Customer Name</th>
+    <th>Customer ID</th>
     <th>Status</th>
     <th>Action</th>
   </tr>
