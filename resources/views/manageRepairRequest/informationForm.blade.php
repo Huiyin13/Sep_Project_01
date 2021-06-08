@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td>Problem's detail:</td>
-                <td><input type="text" name="problemsReported" placeholder="Description" required></td>
+                <td><textarea rows="4" columns="50" name="problemsReported" placeholder="Description" required></textarea></td>
             </tr>
             <tr>
                 <td>Do you want to submit this form?</td>
