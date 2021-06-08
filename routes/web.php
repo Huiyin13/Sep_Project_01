@@ -41,6 +41,7 @@ Route::get('app2', function () {//echart page
     return view('layouts.app2');
 });
 
+
 //manage request Status
 Route::get('testingindex', function () {
     return view('manageRepairStatus.testindex');

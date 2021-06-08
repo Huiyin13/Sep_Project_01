@@ -150,8 +150,10 @@ class manageRepairRequestController extends Controller
         $data1->delete();
         $message = "Request is successful deleted.";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
-        return view('manageRepairRequest.viewDraft', compact("data"));
+
+        return redirect()->back()->with('msj', 'Repair Record is Deleted');
+        //$data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        //return view('manageRepairRequest.viewDraft', compact("data"));
     }
     
 }
