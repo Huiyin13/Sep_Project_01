@@ -13,22 +13,12 @@ class manageRepairStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //Using Resource Controller, Default Function Name Provided by Laravel
+     //Function: displayAllCustOrderList() in SDD
+     //To display all customer submitted repair request
     public function index()
     {
-        //
-        /*$$data = manageRepairStatusModel::where([
-            ['OrderID', '!=', Null],
-            [function ($query) use ($request) {
-                if (($term = $request->term)) {
-                    $query->orWhere('OrderID', 'LIKE', '%' . $term . '%')->get();
-                }
-            }]
-        ])
-            ->orderBy('OrderID', 'desc')
-            ->paginate(10);
-
-        return view('manageRepairStatus.staffViewRequestedRepairList', compact("data"))
-            ->with('i', (request()->input('page', 1) - 1) * 5);*/
             $data = DB::table('requestdetails')
             ->join('customers', 'requestdetails.Customer_ID', '=', 'customers.Customer_ID')
             ->where('requestdetails.Send_Status', "SUBMIT")
@@ -69,6 +59,8 @@ class manageRepairStatusController extends Controller
         
     }
 
+     //Function: searchOrder in SDD
+     //To let staff search the customer order by using orderID
     public function search(Request $request)
     {
         $search = $request->get('search');
@@ -86,6 +78,7 @@ class manageRepairStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //To display the update status form
     public function edit($id)
     {
         //
@@ -103,6 +96,8 @@ class manageRepairStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //Function: updateOrderStatus() in SDD
+     //To allow staff update the repair status
     public function update(Request $request, $id)
     {
         //
@@ -121,6 +116,8 @@ class manageRepairStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     //Function: deleteOrder() in SDD
+     //To delete repair request.
     public function destroy($id)
     {
         //
@@ -129,12 +126,15 @@ class manageRepairStatusController extends Controller
         return redirect('/manageRepairStatus')->with('success', 'Repair Record is Deleted');
     }
 
+     //Function: displayOwnOrderList() in SDD
+     //To display the current logged in customer submitted repair request
     public function custViewAll($id)
     {
         $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Send_Status', "SUBMIT")->paginate(3);
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 
+    //Display confirmation form for customer
     public function custEdit($id)
     {
         //
@@ -142,6 +142,8 @@ class manageRepairStatusController extends Controller
         return view('manageRepairStatus.customerConfirmRepair', compact("data"));
     }
 
+     //Function: updateConfirmationStatus() in SDD
+     //To allow customer to confirm to continue repair
     public function custConfirm($id, $idtwo)
     {
         //
@@ -150,6 +152,8 @@ class manageRepairStatusController extends Controller
         return view('manageRepairStatus.customerViewRequestedRepairList', compact("data"));
     }
 
+    //Function: updateConfirmationStatus() in SDD
+     //To allow customer to confirm to cancel repair
     public function custCancel($id, $idtwo)
     {
         //
