@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class manageRepairRequestController extends Controller
 {
+    //display graph for staff account in customer request
     /**
      * Display a listing of the resource.
      *
