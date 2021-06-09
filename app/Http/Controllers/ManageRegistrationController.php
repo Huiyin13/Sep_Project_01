@@ -15,6 +15,7 @@ use Illuminate\Validation\Rules\Password;
 
 class ManageRegistrationController extends Controller
 {
+    //ANG QIU PENG CB18053
     // Default
     use RegistersUsers;
 

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+    //TEOH KEN QIAN CB18105
     //This function allows to pull the data from other tables to be displayed in the payment details
     public function paymentDetails(Request $req){
         $customerID = $req -> customerID;
