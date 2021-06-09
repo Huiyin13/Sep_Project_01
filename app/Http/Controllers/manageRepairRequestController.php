@@ -27,7 +27,7 @@ class manageRepairRequestController extends Controller
                     foreach($data as $key => $value){
                         $array[++$key] = [$value->Confirmation_Status, $value->number];
                     }
-                    return view('manageRepairrequest.statusPieChart')->with('Confirmation_Status', json_encode
+                    return view('manageRepairRequest.statusPieChart')->with('Confirmation_Status', json_encode
                     ($array));
     }
     
