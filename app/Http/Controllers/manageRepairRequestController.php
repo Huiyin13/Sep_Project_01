@@ -89,13 +89,18 @@ class manageRepairRequestController extends Controller
         return view('manageRepairRequest.viewDraft', compact("data"));
     }
 
-    public function sort($id)
+    /*public function sort($id)
     {
         $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
         $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' ORDER BY Warranty_Date DESC");
         return view('manageRepairRequest.sorted', compact("sorted","data"));
+    }*/
+    public function sort($id)
+    {
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' AND Send_Status = 'SAVE AS DRAFT' ORDER BY Warranty_Date DESC");
+        return view('manageRepairRequest.sorted', compact("sorted"));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
