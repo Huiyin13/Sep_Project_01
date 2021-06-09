@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class manageRepairRequestController extends Controller
 {
-    //display graph for staff account in customer request
+    //this function display graph for staff account in customer request
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +32,7 @@ class manageRepairRequestController extends Controller
                     ($array));
     }
     
+    //this function will add request draft
     /**
      * Show the form for creating a new resource.
      *
@@ -83,7 +84,7 @@ class manageRepairRequestController extends Controller
         //
     }
 
-    //VIEW draft
+    //this function will list all the request drafts
     public function list($id)
     {
         $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
