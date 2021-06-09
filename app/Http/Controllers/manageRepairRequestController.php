@@ -89,18 +89,15 @@ class manageRepairRequestController extends Controller
         return view('manageRepairRequest.viewDraft', compact("data"));
     }
 
-    /*public function sort($id)
-    {
-        $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
-        $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' ORDER BY Warranty_Date DESC");
-        return view('manageRepairRequest.sorted', compact("sorted","data"));
-    }*/
+    //SORT LIST DRAFT
     public function sort($id)
     {
         $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
         $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' AND Send_Status = 'SAVE AS DRAFT' ORDER BY Warranty_Date DESC");
         return view('manageRepairRequest.sorted', compact("sorted"));
     }
+
+    //DISPLAY SHOW EDIT DRAFT FORM
     /**
      * Show the form for editing the specified resource.
      *
@@ -114,6 +111,7 @@ class manageRepairRequestController extends Controller
         return view('manageRepairRequest.editDraft', compact("data"));
     }
 
+    //UPDATE DRAFT DETAILS
     /**
      * Update the specified resource in storage.
      *
@@ -142,6 +140,7 @@ class manageRepairRequestController extends Controller
             return view('manageRepairRequest.editDraft', compact("data"));
     }
 
+    //DELETE DRAFT
     /**
      * Remove the specified resource from storage.
      *
