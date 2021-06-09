@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class manageRepairRequestController extends Controller
 {
+    //this function display graph for staff account in customer request
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +32,7 @@ class manageRepairRequestController extends Controller
                     ($array));
     }
     
+    //this function will add request draft
     /**
      * Show the form for creating a new resource.
      *
@@ -82,20 +84,22 @@ class manageRepairRequestController extends Controller
         //
     }
 
-    //VIEW draft
+    //this function will list all the request drafts
     public function list($id)
     {
         $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
         return view('manageRepairRequest.viewDraft', compact("data"));
     }
 
+    //SORT LIST DRAFT
     public function sort($id)
     {
-        $data = manageRepairRequestModel::where('Customer_ID', $id)->where('Send_Status', "SAVE AS DRAFT")->get();
-        $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' ORDER BY Warranty_Date DESC");
-        return view('manageRepairRequest.sorted', compact("sorted","data"));
+        $data = manageRepairRequestModel::where('Customer_ID', $id)->get();
+        $sorted = DB::select("SELECT * FROM requestdetails WHERE Customer_ID = '$id' AND Send_Status = 'SAVE AS DRAFT' ORDER BY Warranty_Date DESC");
+        return view('manageRepairRequest.sorted', compact("sorted"));
     }
 
+    //DISPLAY SHOW EDIT DRAFT FORM
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,6 +113,7 @@ class manageRepairRequestController extends Controller
         return view('manageRepairRequest.editDraft', compact("data"));
     }
 
+    //UPDATE DRAFT DETAILS
     /**
      * Update the specified resource in storage.
      *
@@ -137,6 +142,7 @@ class manageRepairRequestController extends Controller
             return view('manageRepairRequest.editDraft', compact("data"));
     }
 
+    //DELETE DRAFT
     /**
      * Remove the specified resource from storage.
      *

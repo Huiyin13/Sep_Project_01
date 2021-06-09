@@ -46,7 +46,7 @@
   <tbody>
         
 
-    @foreach($data as $row)
+    @foreach($sorted as $row)
       <tr>
         <td>{{ $row->Comp_Owner }}</td>
         <td>{{ $row->Comp_Model }}</td>
