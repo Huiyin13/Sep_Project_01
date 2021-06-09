@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+    //This function allows to pull the data from other tables to be displayed in the payment details
     public function paymentDetails(Request $req){
         $customerID = $req -> customerID;
         $orderID = $req->OrderID;
@@ -22,6 +23,7 @@ class PaymentController extends Controller
     
     }
 
+    //This function allows for the use of cash on delivery
     public function paymentCOD(Request $req){
         
 
@@ -43,6 +45,7 @@ class PaymentController extends Controller
         return view('ManagePayment.PaymentStatusInterface', compact('info'));
     }
 
+    //This function allows for the use of PayPal
     public function paymentPayPal($customerID, $orderID, $total, $customerName, $customerAddress){
         
 
