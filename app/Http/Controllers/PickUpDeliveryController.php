@@ -12,7 +12,9 @@ class PickUpDeliveryController extends Controller
     //customer view the pick up list
     public function custView($id)
     {
+
         $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
+
         return view('ManagePickUpDeliver.CusDeliveryList', compact("data"));
     }
     //customer view delivery list which the delivery status already delivery to customer
