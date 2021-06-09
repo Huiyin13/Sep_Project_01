@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class ManageAccountController extends Controller
 {
     //Customer
+    //Customer can view profile
     public function selectProfile($id)
     {
         $data = customer::where('Customer_ID', $id)->get();
@@ -28,9 +29,11 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    //Customer can go to edit profile page
     public function editProfile($id)
     {
-        //
+        //Select specific customer profile
         $data = customer::where('Customer_ID', $id)->get();
         return view('ManageAccount.CustomerUpdateInterface', compact("data"));
     }
@@ -54,6 +57,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Customer can update profile
     public function update(Request $request, $id)
     {
         //
@@ -62,6 +67,7 @@ class ManageAccountController extends Controller
         foreach($data as $data1){
             $data2 = $data1->Customer_Password;
         }
+        //Verified the password
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
             
@@ -91,6 +97,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Customer can go to change the password page
     public function changePassword($id)
     {
         //
@@ -106,6 +114,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Customer can change the password
     public function changePass(Request $request, $id)
     {
         //
@@ -115,9 +125,11 @@ class ManageAccountController extends Controller
         foreach($data as $data1){
             $data2 = $data1->Customer_Password;
         }
+        //Verify the password
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
             if($length>=8){
+                //Encrypt the password
                 $validatedData = Hash::make($request->Customer_Password);
             
                 DB::select("UPDATE customers set Customer_Password = '$validatedData' where Customer_ID = ?",[$id]);
@@ -143,6 +155,7 @@ class ManageAccountController extends Controller
     }
 
     //Rider
+    //Rider can view the profile
     public function selectProfileR($id)
     {
         $data = rider::where('Rider_ID', $id)->get();
@@ -155,6 +168,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Rider can go to edit profile page
     public function editProfileR($id)
     {
         //
@@ -171,6 +186,9 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //
+
+    //Rider can update the profile
     public function updateR(Request $request, $id)
     {
         //
@@ -179,6 +197,7 @@ class ManageAccountController extends Controller
         foreach($data as $data1){
             $data2 = $data1->Rider_Password;
         }
+        //Verify the password
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
             
@@ -208,6 +227,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Rider can go to the change password interface
     public function changePasswordR($id)
     {
         //
@@ -223,6 +244,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //Rider can change the password
     public function changePassR(Request $request, $id)
     {
         //
@@ -232,9 +255,11 @@ class ManageAccountController extends Controller
         foreach($data as $data1){
             $data2 = $data1->Rider_Password;
         }
+        //Verify the password
         $verify = password_verify($validatedPass,$data2);
         if ( $verify) {
             if($length>=8){
+                //Encrypt the password
                 $validatedData = Hash::make($request->Rider_Password);
             
                 DB::select("UPDATE riders set Rider_Password = '$validatedData' where Rider_ID = ?",[$id]);
@@ -261,13 +286,15 @@ class ManageAccountController extends Controller
     }
     
     //Staff-->Customer
+    //Display the customer list
     public function selectUserType()
     {
         
         $data = customer::all();
         return view('ManageAccount.CustomerListInterface', compact("data"));
     }
-    
+
+    //Staff can search the customer by using customer name
     public function search(Request $request)
     {
         $name = $request->search;
@@ -275,12 +302,14 @@ class ManageAccountController extends Controller
         return view('ManageAccount.CustomerListInterface', compact("data"));
     }
 
+    //Staff can select a customer to view the customer profile
     public function viewProfile($id)
     {
         $data = customer::where('Customer_ID', $id)->get();
         return view('ManageAccount.CustomerInformationInterface', compact("data"));
     }
 
+    //Staff go to update customer IC number page
     public function updateIC($id)
     {
         //
@@ -288,6 +317,7 @@ class ManageAccountController extends Controller
         return view('ManageAccount.ICUpdateInterface', compact("data"));
     }
 
+    //Staff update customer IC number 
     public function updateICC(Request $request, $id)
     {
         //
@@ -313,6 +343,7 @@ class ManageAccountController extends Controller
         }
     }
 
+    //Staff go to ban customer page
     public function banUser($id)
     {
         //
@@ -327,6 +358,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //Staff ban the customer
     public function ban(Request $request, $id)
     {
         //
@@ -358,25 +391,29 @@ class ManageAccountController extends Controller
     }
 
     //Staff-->Rider
+    //Display the rider list
     public function selectUserTypeR()
     {
         $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'APPROVED' OR Rider_Status = 'BANNED' OR Rider_Status = 'REJECTED' ");
         return view('ManageAccount.RiderListInterface', compact("data"));
     }
     
+    //Staff can search the rider by using rider name    
     public function searchR(Request $request)
     {
         $name = $request->search;
         $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->where('Rider_Status', "BANNED")->orWhere('Rider_Status', "APPROVED")->orWhere('Rider_Status', "REJECTED")->get();
         return view('ManageAccount.RiderListInterface', compact("data"));
     }
-
+    
+    //Staff can select a rider to view rider profile
     public function viewProfileR($id)
     {
         $data = rider::where('Rider_ID', $id)->get();
         return view('ManageAccount.RiderInformationInterface', compact("data"));
     }
 
+    //Staff go to the update rider IC page
     public function updateICR($id)
     {
         //
@@ -384,6 +421,7 @@ class ManageAccountController extends Controller
         return view('ManageAccount.ICUpdateRInterface', compact("data"));
     }
 
+    //Staff update the rider IC number
     public function updateICRR(Request $request, $id)
     {
         //
@@ -409,6 +447,7 @@ class ManageAccountController extends Controller
         }
     }
 
+    //Staff go to ban rider page
     public function banUserR($id)
     {
         //
@@ -423,6 +462,8 @@ class ManageAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //Staff can ban the rider
     public function banR(Request $request, $id)
     {
         //
@@ -450,18 +491,21 @@ class ManageAccountController extends Controller
     }
 
     //Staff-->Rider Registration
+    //Display the rider registration list
     public function viewRegister()
     {
         $data = DB::select("SELECT * FROM riders WHERE Rider_Status = 'PENDING'");
         return view('ManageAccount.RegistrationListInterface', compact("data"));
     }
 
+    //Staff select a rider profile to view in the registration list
     public function selectProfileRR($id)
     {
         $data = rider::where('Rider_ID', $id)->get();
         return view('ManageAccount.RegisterInformationInterface', compact("data"));
     }
 
+    //Staff can approve the rider registration
     public function approve($id)
     {
         //
@@ -472,6 +516,7 @@ class ManageAccountController extends Controller
         return view('ManageAccount.RegistrationListInterface', compact("data"));
     }
 
+    //Staff go to the reject rider registration page
     public function reject($id)
     {
         //
@@ -479,6 +524,7 @@ class ManageAccountController extends Controller
         return view('ManageAccount.RejectRegistrationInterface', compact("data"));
     }
 
+    //Staff can reject the rider registration
     public function rejectR(Request $request, $id)
     {
         //
