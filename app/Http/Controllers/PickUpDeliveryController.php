@@ -9,50 +9,57 @@ use App\Models\PickUpDeliveryModel;
 
 class PickUpDeliveryController extends Controller
 {
-    //customer view pick up list
+    //customer view the pick up list
     public function custView($id)
     {
-        $data = manageRepairStatusModel::where('Customer_ID', $id)->where('Order_Status',"PENDING")->get();
+
+        $data = manageRepairStatusModel::where('Customer_ID', $id)->get();
+
         return view('ManagePickUpDeliver.CusDeliveryList', compact("data"));
     }
-    //customer view delivery list
+    //customer view delivery list which the delivery status already delivery to customer
     public function custDeliverView($id)
     {
         $data = PickUpDeliveryModel::where('Customer_ID', $id)->where('Status',"SuccessDeliver")->get();
         return view('ManagePickUpDeliver.CusDeliverList', compact("data"));
     }
-    //customer view pickup detail
+    //customer view pickup detail when the customer choose the pick up 
     public function cusViewDetail ($id){
         $data = manageRepairStatusModel::findOrFail($id);
         return view('ManagePickUpDeliver.DeliveryDetail', compact("data"));
     }
-    //customer view deliver detail
+    //customer view deliver detail which customer is choose
     public function cusDeliverDetail ($id){
         
         $data = PickUpDeliveryModel::findOrFail($id);
         return view('ManagePickUpDeliver.CusDeliverDetail', compact("data"));
     }
 
+    //rider view pick up list which pick up list that already add with the customer
     public function riderViewPickList(){
         $data = PickUpDeliveryModel::where('Status', "Pending")->get();
         return view('ManagePickUpDeliver.PickUpList',['data'=>$data]);
     }
 
+    //rider view pick up detail which choose by the rider 
     public function riderViewPickDetail($id){
         $data = PickUpDeliveryModel::findOrFail($id);
         return view('ManagePickUpDeliver.PickUpDetail', compact("data"));
     }
 
+    // rider view delivery list which item already pick up successfully by the rider.
     public function riderViewDeliver(){
         $data = PickUpDeliveryModel::where('Status', "SuccessPick")->get();
         return view('ManagePickUpDeliver.DeliverList',['data'=>$data]);
     }
 
+    //rider view delivery information of the order_ID, customer pickup address
     public function riderViewDeliverDetail($id){
         $data = PickUpDeliveryModel::findOrFail($id);
         return view('ManagePickUpDeliver.DeliverDetail', compact("data"));
     }
 
+    //customer add pick up to database after order status is pending
     public function cusAddPickUp(Request $req){
 
         $data = new PickUpDeliveryModel;
@@ -69,6 +76,7 @@ class PickUpDeliveryController extends Controller
         return view('ManageAccount.CustomerMainPage');
     }
 
+    //rider update pick up status after rider pick up the item from the customer 
     public function update(Request $req, $id){
             $validatedData = $req->validate([
                 'Status' => 'required|max:255'
@@ -82,6 +90,7 @@ class PickUpDeliveryController extends Controller
         
     }
 
+    //rider update the delivery information after deliver the item to customer
     public function riderUpdateDeliver(Request $req, $id){
         $validatedData = $req->validate([
             'Status' => 'required|max:255',

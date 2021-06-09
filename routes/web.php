@@ -148,25 +148,32 @@ Route::get('/ManageAccount/{id}/rejectR', 'ManageAccountController@rejectR')->na
 Route::get('pickupdelivery',function(){
     return view('ManagePickUpDeliver.testuse');
 });
+//Rider view pick up list
 Route::get('/riderViewPickList','PickUpDeliveryController@riderViewPickList')->name('ManagePickUpDeliver.riderPk');
+//Rider view pick up detail 
 Route::get('/ViewPick/{id}/View','PickUpDeliveryController@riderViewPickDetail')->name('ManagePickUpDeliver.riderDetail');
+//Rider update the data
 Route::post('/ViewPick/{id}/update','PickUpDeliveryController@update')->name('ManagePickUpDeliver.update');
-
+//Rider view delivery list
 Route::get('/riderViewDeliver','PickUpDeliveryController@riderViewDeliver')->name('ManagePickUpDeliver.riderDv');
+//Rider view delivery detail
 Route::get('/riderViewDeliver/{id}/View','PickUpDeliveryController@riderViewDeliverDetail')->name('ManagePickUpDeliver.riderDeliver');
+//rider update the delivery information
 Route::post('/riderViewDeliver/{id}/riderUpdateDeliver','PickUpDeliveryController@riderUpdateDeliver')->name('ManagePickUpDeliver.riderUpdateDeliver');
 
 
-Route::post('/riderViewDeliver/{id}/riderEditDate','PickUpDeliveryController@riderEditDate')->name('ManagePickUpDeliver.riderEditDate');
-Route::post('/riderViewDeliver/{id}/riderEditTime','PickUpDeliveryController@riderEditTime')->name('ManagePickUpDeliver.riderEditTime');
-
+//Route::post('/riderViewDeliver/{id}/riderEditDate','PickUpDeliveryController@riderEditDate')->name('ManagePickUpDeliver.riderEditDate');
+//Route::post('/riderViewDeliver/{id}/riderEditTime','PickUpDeliveryController@riderEditTime')->name('ManagePickUpDeliver.riderEditTime');
+//Customer view the deliver list
 Route::get('/cusViewDelivery/{id}','PickUpDeliveryController@custView')->name('ManagePickUpDeliver.cuslist');
+//Customer view the deliver detail
 Route::get('/custDeliverView/{id}','PickUpDeliveryController@custDeliverView')->name('ManagePickUpDeliver.custDeliverView');
 
 //Customer View PickUp Detail
 Route::get('/cusViewDelivery/{id}/cusViewDetail','PickUpDeliveryController@cusViewDetail')->name('ManagePickUpDeliver.cusViewDetail');
+//Customer view pick up information
 Route::get('/CusDetail/{id}/CusDeliverDetail','PickUpDeliveryController@CusDeliverDetail')->name('ManagePickUpDeliver.CusDeliverDetail');
-
+//Customer add pick up
 Route::post('/cusViewDelivery/{id}/add','PickUpDeliveryController@cusAddPickUp')->name('ManagePickUpDeliver.cusAddPickUp');
 Route::post('add','PickUpDeliveryController@cusAddPickUp');
 
