@@ -309,7 +309,7 @@ class ManageAccountController extends Controller
             $data = customer::where('Customer_ID', $id)->get();
              $message = "Identification Card (IC) Number only allow numerical input. ";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            return view('ManageAccount.CustomerUpdateInterface', compact("data"));
+            return view('ManageAccount.CustomerInformationInterface', compact("data"));
         }
     }
 
@@ -367,7 +367,7 @@ class ManageAccountController extends Controller
     public function searchR(Request $request)
     {
         $name = $request->search;
-        $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->get();
+        $data = rider::where('Rider_Name', 'LIKE', '%'. $name .'%')->where('Rider_Status', "BANNED")->orWhere('Rider_Status', "APPROVED")->orWhere('Rider_Status', "REJECTED")->get();
         return view('ManageAccount.RiderListInterface', compact("data"));
     }
 
